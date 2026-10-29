@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Error ramp case study</title>
-<link rel="stylesheet" href="../styles.css?v=3542bfab">
+<link rel="stylesheet" href="../styles.css?v=ad9604bc">
 </head>
 <body>
 <header class="site wrap"><span class="brand">Shin</span></header>
@@ -40,6 +40,23 @@
 <li><strong>Brand colours are fixed.</strong> Blue #0043CE and orange #F78F20 were already set, so Error had to fit around them.</li>
 <li><strong>Steps you can tell apart.</strong> Under 1.2:1 between neighbours and two stops read as one.</li>
 </ol>
+</section>
+<section class="wrap" id="audit">
+<div class="tag">03 / Audit</div>
+<h2>Six stops <em>don't reach</em></h2>
+<p>Top row: v2.0 Red. Bottom row: v2.1 Error, at the same width, so the missing stops show as empty space. v2.0 opens at #E96E6E, which is 3.03 on white, a fill. v2.1 opens at a tint that holds dark text at 14.9.</p>
+<img src="assets/error-before-after-v2.png" alt="v2.0 Red row of six swatches stacked above the v2.1 Error row of ten swatches">
+<p>A ramp is a stepper. Lightness per stop, v2.0 against v2.1:</p>
+<img src="assets/error-stepper.png" alt="Stepper chart of lightness per stop for the Error ramp, v2.0 against v2.1">
+<table>
+<tr><th></th><th>v2.0 Red</th><th>v2.1 Error</th></tr>
+<tr><td>Stops</td><td>6</td><td>10</td></tr>
+<tr><td>Lightness range</td><td>0.31</td><td>0.61</td></tr>
+<tr><td>Hue</td><td>drifts 22 to 27</td><td>held at 30</td></tr>
+<tr><td>Step between stops</td><td>1.17 to 1.44</td><td>1.18 to 1.45</td></tr>
+<tr><td>Passes both pages</td><td>300 and 400, unmarked</td><td>500, marked</td></tr>
+</table>
+<div class="with-note"><aside class="margin">Error 500 reads 4.75 on white and 3.62 on #1B1B1B. The old 300 passed too. It is the new 500, where the semantic token points.</aside></div>
 </section>
 </main>
 <footer class="wrap">Shin. Built as one static page.</footer>

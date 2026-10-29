@@ -32,6 +32,9 @@ strong{font-weight:600}
 .lead-gap>.margin{margin-top:0}
 .margin{border-top:1px solid var(--line);padding-top:12px;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted)}
 footer{margin-top:88px;border-top:1px solid var(--line);padding:20px 0 40px;color:var(--muted);font-size:13px}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:14px;margin:8px 0 16px}
+th{font:11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;text-transform:uppercase;letter-spacing:.06em;padding:15px 15px 15px 0;border-bottom:1px solid var(--ink);white-space:nowrap}
+td{padding:16px 20px 16px 0;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
 .chat{display:flex;flex-direction:column;gap:14px;max-width:620px}
 .msg{display:flex;gap:12px;align-items:flex-end}
 .av{flex:none;width:44px;height:44px;border-radius:50%;background:#E6E2D6;display:grid;place-items:center;font-size:24px;line-height:1}
