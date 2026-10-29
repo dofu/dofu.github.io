@@ -44,7 +44,20 @@ footer{margin-top:88px;border-top:1px solid var(--line);padding:20px 0 40px;colo
 table{width:100%;border-collapse:collapse;text-align:left;font-size:14px;margin:8px 0 16px}
 th{font:11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;text-transform:uppercase;letter-spacing:.06em;padding:15px 15px 15px 0;border-bottom:1px solid var(--ink);white-space:nowrap}
 td{padding:16px 20px 16px 0;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+header nav{display:flex;gap:28px;font-size:14px;margin-left:auto}
+header nav a{text-decoration:none}
+header nav a:hover{text-decoration:underline}
 .chat{display:flex;flex-direction:column;gap:14px;max-width:620px}
 .msg{display:flex;gap:12px;align-items:flex-end}
 .av{flex:none;width:44px;height:44px;border-radius:50%;background:#E6E2D6;display:grid;place-items:center;font-size:24px;line-height:1}
 .bub{background:#EAE6DB;border-radius:20px 20px 20px 6px;padding:12px 18px;font-size:16px;line-height:1.5}
+@media (max-width:860px){
+  section,section.band .in,.with-note{display:block}
+  .with-note>.margin{margin-top:14px}
+  header nav{display:none}
+  header.site{height:72px}
+}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--cream);padding:10px 16px;z-index:10}
+.skip:focus{left:8px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
