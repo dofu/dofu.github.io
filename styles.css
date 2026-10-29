@@ -25,4 +25,10 @@ section>p.cap{font-size:17px;line-height:1.6;letter-spacing:0}
 img{display:block;width:100%;height:auto;margin:28px 0;border:1px solid var(--line)}
 ol,ul{padding-left:22px;max-width:680px} li{margin:0 0 14px}
 strong{font-weight:600}
+.with-note{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:56px;align-items:start}
+.with-note>.margin{grid-column:1;grid-row:1;margin-top:28px}
+.with-note>:not(.margin){grid-column:2;grid-row:1}
+.lead-gap{margin-top:40px}
+.lead-gap>.margin{margin-top:0}
+.margin{border-top:1px solid var(--line);padding-top:12px;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted)}
 footer{margin-top:88px;border-top:1px solid var(--line);padding:20px 0 40px;color:var(--muted);font-size:13px}
