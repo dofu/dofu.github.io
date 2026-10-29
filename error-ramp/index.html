@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error ramp case study</title>
+<link rel="stylesheet" href="../styles.css?v=f307ebb7">
+</head>
+<body>
+<header class="site wrap"><span class="brand">Shin</span></header>
+<main>
+<div class="wrap"><h1>One red, <em>ten stops<span>.</span></em></h1>
+<p class="lede">A design system colour ramp, before and after. Six reds that all started at the fill end became ten stops, each read against the two on-colours the app uses: white and #1B1B1B.</p></div>
+<section class="wrap" id="problem">
+<div class="tag">01 / Problem statement</div>
+<h2>A palette with badges is not a <em>ramp</em></h2>
+<p>I lead the design system for a trading app. Investors read these colours every day. Designers build from them, and so does Claude, through the component library.</p>
+<div class="with-note">
+<aside class="margin">Role: design system lead. Scope: colour primitives, seven ramps. Error carries the story here.</aside>
+<p>Version 2.0 put contrast badges on every swatch and marked no answer. A designer picking a red for a button, a banner or a dark screen had to guess which stop was safe. The ramp also stopped at six stops that all started at the fill end.</p>
+</div>
+<div class="with-note lead-gap">
+<aside class="margin">What people said about v2.0. Paraphrased, names removed.</aside>
+<div class="chat" role="list" aria-label="Feedback on v2.0">
+<div class="msg" role="listitem"><div class="av" aria-hidden="true">😕</div><div class="bub">Surface 2 is too light. It jumps about 50% from Surface 1, and the containers look washed out.</div></div>
+<div class="msg" role="listitem"><div class="av" aria-hidden="true">😬</div><div class="bub">One red and one green fail on the secondary surface, and the negative button's label is hard to see.</div></div>
+<div class="msg" role="listitem"><div class="av" aria-hidden="true">🤔</div><div class="bub">Muted red and green look softer, but traders no longer read them instantly.</div></div>
+<div class="msg" role="listitem"><div class="av" aria-hidden="true">😤</div><div class="bub">We need more shades per colour for contrast and hierarchy.</div></div>
+<div class="msg" role="listitem"><div class="av" aria-hidden="true">😵</div><div class="bub">Colours are missing from the mapping, tokens share one hex, and some screens hard-code colours.</div></div>
+<div class="msg" role="listitem"><div class="av" aria-hidden="true">😩</div><div class="bub">Switching between dark and light needs extra variables.</div></div>
+</div>
+</div>
+</section>
+<section class="wrap" id="constraints">
+<div class="tag">02 / Constraints</div>
+<h2>Four rules the ramp <em>had to meet</em></h2>
+<ol>
+<li><strong>Two pages.</strong> Every colour has to read on white and on #1B1B1B.</li>
+<li><strong>One fill for both modes.</strong> A fill with a white label needs 4.5:1 on the label and 3:1 against each page. That pins its relative luminance to 0.133 to 0.183.</li>
+<li><strong>Brand colours are fixed.</strong> Blue #0043CE and orange #F78F20 were already set, so Error had to fit around them.</li>
+<li><strong>Steps you can tell apart.</strong> Under 1.2:1 between neighbours and two stops read as one.</li>
+</ol>
+</section>
+<section class="wrap" id="audit">
+<div class="tag">03 / Audit</div>
+<h2>Six stops <em>don't reach</em></h2>
+<p>Top row: v2.0 Red. Bottom row: v2.1 Error, at the same width, so the missing stops show as empty space. v2.0 opens at #E96E6E, which is 3.03 on white, a fill. v2.1 opens at a tint that holds dark text at 14.9.</p>
+<img src="assets/error-before-after-v2.png" alt="v2.0 Red row of six swatches stacked above the v2.1 Error row of ten swatches">
+<p>A ramp is a stepper. Lightness per stop, v2.0 against v2.1:</p>
+<img src="assets/error-stepper.png" alt="Stepper chart of lightness per stop for the Error ramp, v2.0 against v2.1">
+<table>
+<tr><th></th><th>v2.0 Red</th><th>v2.1 Error</th></tr>
+<tr><td>Stops</td><td>6</td><td>10</td></tr>
+<tr><td>Lightness range</td><td>0.31</td><td>0.61</td></tr>
+<tr><td>Hue</td><td>drifts 22 to 27</td><td>held at 30</td></tr>
+<tr><td>Step between stops</td><td>1.17 to 1.44</td><td>1.18 to 1.45</td></tr>
+<tr><td>Passes both pages</td><td>300 and 400, unmarked</td><td>500, marked</td></tr>
+</table>
+<div class="with-note"><aside class="margin">Error 500 reads 4.75 on white and 3.62 on #1B1B1B. The old 300 passed too. It is the new 500, where the semantic token points.</aside></div>
+</section>
+<section class="band" id="decisions"><div class="in">
+<div class="tag">04 / Decisions</div>
+<h2>What I chose, and <em>what I gave up</em></h2>
+<img src="assets/trade-before-after-v2.png" alt="The Trade screen in dark mode, before and after v2.1, with notes on what changed">
+<p class="cap">The same trade ticket, before and after v2.1. Before: the current app colours, applied screen by screen. After: the v2.1 palette, applied by rule.</p>
+<ol>
+<li><strong>Brighter fill over safer contrast.</strong> I solved two reds for the one-fill rule. One traded a little page contrast for a brighter, more brand-like colour. The other did the reverse. I took the brighter one.</li>
+<li><strong>Cut the lookalikes.</strong> Four reds sat 1.06 to 1.12:1 apart and looked the same. I kept one, dropped two as duplicates, and derived two fillers on the ramp's own hue and chroma.</li>
+<li><strong>Add a surface tint.</strong> v2.0 had no stop light enough to sit behind text. v2.1 starts at one.</li>
+<li><strong>Hold the hue.</strong> Dark reds stay red. They don't drift toward brown, which is what happened to the amber ramp.</li>
+<li><strong>Script proposes, I decide.</strong> Values are derived in OKLCH by script, judged by eye, and placed on the board by hand. The script never shipped a stop. I did.</li>
+</ol>
+<p>Neutrals step up by elevation. The brand fill sits only on the main action. Status colour appears only where it means something. Every text and icon colour passes WCAG on dark and on light. Light mode comes from the same tokens, so there is no second palette to maintain.</p>
+<p>For Error, one fill, stop 500, serves both modes with a white label. The 46 colours are in code as tokens in <a href="https://github.com/dofu/P3-comp-lib">P3-comp-lib</a>.</p>
+</div></section>
+</main>
+<footer class="wrap">Shin. Built as one static page.</footer>
+</body>
+</html>
