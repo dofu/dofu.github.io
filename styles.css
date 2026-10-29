@@ -25,12 +25,21 @@ section>p.cap{font-size:17px;line-height:1.6;letter-spacing:0}
 img{display:block;width:100%;height:auto;margin:28px 0;border:1px solid var(--line)}
 ol,ul{padding-left:22px;max-width:680px} li{margin:0 0 14px}
 strong{font-weight:600}
+section.band{background:var(--ink);color:var(--cream);padding:88px 0;margin-top:88px;display:block}
+section.band>.in{width:min(1100px,calc(100% - 56px));margin-inline:auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:56px}
+section.band .in>*{grid-column:2;min-width:0}
+section.band .in>.tag{grid-column:1/-1}
+section.band .in>h2{grid-column:1;grid-row:2;align-self:start}
+section.band .in>img{grid-column:1/-1;border:0}
+section.band .in>p.cap{font-size:17px;line-height:1.6;letter-spacing:0}
 .with-note{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:56px;align-items:start}
 .with-note>.margin{grid-column:1;grid-row:1;margin-top:28px}
 .with-note>:not(.margin){grid-column:2;grid-row:1}
 .lead-gap{margin-top:40px}
 .lead-gap>.margin{margin-top:0}
 .margin{border-top:1px solid var(--line);padding-top:12px;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted)}
+section.band .in>p,section.band .in>ol{grid-column:1/-1;max-width:none}
+section.band a{color:var(--cream)}
 footer{margin-top:88px;border-top:1px solid var(--line);padding:20px 0 40px;color:var(--muted);font-size:13px}
 table{width:100%;border-collapse:collapse;text-align:left;font-size:14px;margin:8px 0 16px}
 th{font:11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;text-transform:uppercase;letter-spacing:.06em;padding:15px 15px 15px 0;border-bottom:1px solid var(--ink);white-space:nowrap}

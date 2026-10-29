@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Error ramp case study</title>
-<link rel="stylesheet" href="../styles.css?v=ad9604bc">
+<link rel="stylesheet" href="../styles.css?v=f307ebb7">
 </head>
 <body>
 <header class="site wrap"><span class="brand">Shin</span></header>
@@ -58,6 +58,21 @@
 </table>
 <div class="with-note"><aside class="margin">Error 500 reads 4.75 on white and 3.62 on #1B1B1B. The old 300 passed too. It is the new 500, where the semantic token points.</aside></div>
 </section>
+<section class="band" id="decisions"><div class="in">
+<div class="tag">04 / Decisions</div>
+<h2>What I chose, and <em>what I gave up</em></h2>
+<img src="assets/trade-before-after-v2.png" alt="The Trade screen in dark mode, before and after v2.1, with notes on what changed">
+<p class="cap">The same trade ticket, before and after v2.1. Before: the current app colours, applied screen by screen. After: the v2.1 palette, applied by rule.</p>
+<ol>
+<li><strong>Brighter fill over safer contrast.</strong> I solved two reds for the one-fill rule. One traded a little page contrast for a brighter, more brand-like colour. The other did the reverse. I took the brighter one.</li>
+<li><strong>Cut the lookalikes.</strong> Four reds sat 1.06 to 1.12:1 apart and looked the same. I kept one, dropped two as duplicates, and derived two fillers on the ramp's own hue and chroma.</li>
+<li><strong>Add a surface tint.</strong> v2.0 had no stop light enough to sit behind text. v2.1 starts at one.</li>
+<li><strong>Hold the hue.</strong> Dark reds stay red. They don't drift toward brown, which is what happened to the amber ramp.</li>
+<li><strong>Script proposes, I decide.</strong> Values are derived in OKLCH by script, judged by eye, and placed on the board by hand. The script never shipped a stop. I did.</li>
+</ol>
+<p>Neutrals step up by elevation. The brand fill sits only on the main action. Status colour appears only where it means something. Every text and icon colour passes WCAG on dark and on light. Light mode comes from the same tokens, so there is no second palette to maintain.</p>
+<p>For Error, one fill, stop 500, serves both modes with a white label. The 46 colours are in code as tokens in <a href="https://github.com/dofu/P3-comp-lib">P3-comp-lib</a>.</p>
+</div></section>
 </main>
 <footer class="wrap">Shin. Built as one static page.</footer>
 </body>
