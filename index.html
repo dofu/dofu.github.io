@@ -9,30 +9,31 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
 .work{list-style:none;padding:0;margin:0}
-.work li{border-bottom:1px solid var(--line);padding:22px 0;margin:0;display:grid;grid-template-columns:1fr auto;align-items:baseline;column-gap:16px}
-.work a{font-size:24px;letter-spacing:-.02em;text-decoration:none}
+.work>li{border-bottom:1px solid var(--line);padding:22px 0;margin:0;display:grid;grid-template-columns:1fr auto;align-items:baseline;column-gap:16px}
+.work a{font-size:var(--fs-link);letter-spacing:-.02em;text-decoration:none}
+.work .tags{grid-column:1/-1;margin-top:12px}
 .work a:hover{text-decoration:underline}
-.work time{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.06em;color:var(--muted)}
-.work span{grid-column:1/-1;display:block;color:var(--muted);font-size:15px;margin-top:4px}
+.work time{font:var(--fs-label) var(--font-mono);letter-spacing:.06em;color:var(--muted)}
+.work span{grid-column:1/-1;display:block;color:var(--muted);font-size:var(--fs-caption);margin-top:4px}
 </style>
 <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme:dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=ae605d25">
+<link rel="stylesheet" href="styles.css?v=4593cac0">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site wrap"><span class="brand">Shin</span><button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="o" d="M3 7h18M3 12h18M3 17h18"/><path class="x" d="M5 5l14 14M19 5L5 19"/></svg></button><nav aria-label="Site" id="site-nav"><a href="index.html" aria-current="page">Home</a><div class="menu"><button class="menu-btn" type="button" aria-expanded="false" aria-controls="articles-menu">Articles<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul id="articles-menu"><li><a href="error-ramp/index.html">One red, ten stops</a></li></ul></div><a href="https://github.com/dofu" class="ext">Return to GitHub</a></nav><button class="theme" type="button" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="moon" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg></button></header>
+<header class="site wrap"><span class="brand">Shin</span><button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="o" d="M3 7h18M3 12h18M3 17h18"/><path class="x" d="M5 5l14 14M19 5L5 19"/></svg></button><nav aria-label="Site" id="site-nav"><a href="index.html" aria-current="page">Home</a><div class="menu"><button class="menu-btn" type="button" aria-expanded="false" aria-controls="articles-menu">Articles<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul id="articles-menu"><li><a href="colour-swatch/index.html">Optimising a design system colour swatch</a></li></ul></div><a href="https://github.com/dofu" class="ext">Return to GitHub</a></nav><button class="theme" type="button" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="moon" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg></button></header>
 <main id="main" tabindex="-1">
-<div class="wrap"><h1>Hi, I'm <em>Shin<span>.</span></em></h1>
-<p class="lede">I lead UX and govern the design system for a trading app. I design the screens, then write the rules and the guidelines that keep them consistent.</p></div>
-<section class="wrap" id="work"><div class="tag">01 / Work</div><h2>Selected <em>work</em></h2>
+<div class="wrap"><h1>Hi, <mark>I'm</mark> <em>Shin<span>.</span></em></h1>
+<p class="lede">I lead UX and govern the design system for a trading app. I design the screens, then write the rules and the guidelines that keep them consistent.</p>
+<p class="cta"><a class="btn" href="https://www.linkedin.com/in/shingan/" rel="noopener">Come say Hello on LinkedIn</a></p></div>
+<section class="wrap" id="work"><div class="tag">01 / Work</div><h2><mark>Selected</mark> <em>work</em></h2>
 <ul class="work">
-<li><a href="error-ramp/index.html">One red, ten stops</a><time datetime="2026">2026</time><span>A design system colour ramp, rebuilt from six stops to ten.</span></li>
-<li><a href="motion-mosquito-zapper-game/">Motion Mosquito Zapper</a><time datetime="2026">2026</time><span>A motion-controlled game: swat mosquitoes with your hand, through the webcam.</span></li>
-<li><a href="disc-test/">DISC test</a><time datetime="2025">2025</time><span>A 24-question assessment that runs in the browser, with nothing stored.</span></li>
-<li><a href="https://www.linkedin.com/in/shingan/">LinkedIn</a><span>Come say Hello</span></li>
+<li><a href="colour-swatch/index.html">Optimising a design system colour swatch</a><time datetime="2026">2026</time><span>A design system colour ramp, rebuilt from six stops to ten.</span><ul class="tags" aria-label="Tags"><li>Design system</li><li>Colour</li><li>Accessibility</li><li>Dark mode</li></ul></li>
+<li><a href="motion-mosquito-zapper-game/">Motion Mosquito Zapper</a><time datetime="2026">2026</time><span>A motion-controlled game: swat mosquitoes with your hand, through the webcam.</span><ul class="tags" aria-label="Tags"><li>Game</li><li>Motion</li></ul></li>
+<li><a href="disc-test/">DISC test</a><time datetime="2025">2025</time><span>A 24-question assessment that runs in the browser, with nothing stored.</span><ul class="tags" aria-label="Tags"><li>Tool</li><li>Assessment</li></ul></li>
 </ul></section>
 </main>
-<footer class="wrap">Shin. Built as one static page.</footer>
 <script src="reveal.js" defer></script>
+<footer class="wrap">Shin. A UX designer walks into a bar, pushes the door marked pull, and blames the door.</footer>
 </body>
 </html>
