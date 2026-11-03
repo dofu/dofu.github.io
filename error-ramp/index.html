@@ -15,14 +15,14 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme:dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
-<link rel="stylesheet" href="../styles.css?v=ae605d25">
+<link rel="stylesheet" href="../styles.css?v=5aa988ec">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site wrap"><a class="brand" href="../index.html" aria-label="Shin, home">Shin</a><button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="o" d="M3 7h18M3 12h18M3 17h18"/><path class="x" d="M5 5l14 14M19 5L5 19"/></svg></button><nav aria-label="Site" id="site-nav"><a href="../index.html">Home</a><div class="menu is-current"><button class="menu-btn" type="button" aria-expanded="false" aria-controls="articles-menu">Articles<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul id="articles-menu"><li><a href="../error-ramp/index.html" aria-current="page">One red, ten stops</a></li></ul></div><a href="https://github.com/dofu" class="ext">Return to GitHub</a></nav><button class="theme" type="button" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="moon" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg></button></header>
+<header class="site wrap"><a class="brand" href="../index.html" aria-label="Shin, home">Shin</a><button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="o" d="M3 7h18M3 12h18M3 17h18"/><path class="x" d="M5 5l14 14M19 5L5 19"/></svg></button><nav aria-label="Site" id="site-nav"><a href="../index.html">Home</a><div class="menu is-current"><button class="menu-btn" type="button" aria-expanded="false" aria-controls="articles-menu">Articles<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul id="articles-menu"><li><a href="../error-ramp/index.html" aria-current="page">One red, ten stops</a></li><li><a href="../font-size-study/index.html">Same study, two toolkits</a></li><li><a href="../p3-comp-lib/index.html">A design system you can prompt</a></li><li><a href="../ai-workflow/index.html">How I set up my AI workflow</a></li><li><a href="../task-tracker/index.html">A design system from scratch</a></li></ul></div><a href="https://github.com/dofu" class="ext">Return to GitHub</a></nav><button class="theme" type="button" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="moon" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg></button></header>
 <main id="main" tabindex="-1">
 <div class="wrap"><h1>One <mark>red</mark>, <em>ten stops<span>.</span></em></h1>
-<p class="lede">A design system colour ramp, before and after. Six reds that all started at the fill end became ten stops, each read against the two on-colours the app uses: white and #1B1B1B.</p></div>
+<p class="lede">A design system colour ramp, before and after. Six reds that all started at the fill end became ten stops, each read against the two on-colours the app uses: white and #1B1B1B.</p><ul class="tags" aria-label="Tags"><li>Design system</li><li>Colour</li><li>Accessibility</li><li>Dark mode</li></ul></div>
 <section class="wrap" id="problem">
 <div class="tag">01 / Problem statement</div>
 <h2>A palette with badges is <mark>not</mark> a <em>ramp</em></h2>
@@ -57,9 +57,54 @@
 <div class="tag">03 / Audit</div>
 <h2><mark>Six stops</mark> <em>don't reach</em></h2>
 <p>Top row: v2.0 Red. Bottom row: v2.1 Error, at the same width, so the missing stops show as empty space. v2.0 opens at #E96E6E, which is 3.03 on white, a fill. v2.1 opens at a tint that holds dark text at 14.9.</p>
-<img src="assets/error-before-after-v2.png" alt="v2.0 Red row of six swatches stacked above the v2.1 Error row of ten swatches">
-<p>A ramp is a stepper. Lightness per stop, v2.0 against v2.1:</p>
-<img src="assets/error-stepper.png" alt="Stepper chart of lightness per stop for the Error ramp, v2.0 against v2.1">
+<figure class="swatch" aria-label="Swatches for both ramps with contrast on white (W) and on #1B1B1B (D). v2.0 Red has six stops, 100 to 600; v2.1 Error has ten, 50 to 900. The stops that take a white label are outlined: 300 and 400 in v2.0, 500 in v2.1.">
+<div class="srow"><p class="sname">v2.0 Red<small>6 stops, 100 to 600</small></p><ol class="scells">
+<li class="empty"><span class="chip"></span><span class="meta"><b>50</b><span>none</span></span></li>
+<li class=""><span class="chip" style="background:#E96E6E"></span><span class="meta"><b>100</b><span>#E96E6E</span><span>W 3.03</span><span>D 5.68</span></span></li>
+<li class=""><span class="chip" style="background:#E55151"></span><span class="meta"><b>200</b><span>#E55151</span><span>W 3.73</span><span>D 4.62</span></span></li>
+<li class="label"><span class="chip" style="background:#DE2626"></span><span class="meta"><b>300</b><span>#DE2626</span><span>W 4.76</span><span>D 3.62</span></span></li>
+<li class="label"><span class="chip" style="background:#CA2323"></span><span class="meta"><b>400</b><span>#CA2323</span><span>W 5.56</span><span>D 3.10</span></span></li>
+<li class=""><span class="chip" style="background:#9E1B1B"></span><span class="meta"><b>500</b><span>#9E1B1B</span><span>W 8.00</span><span>D 2.15</span></span></li>
+<li class=""><span class="chip" style="background:#7A1515"></span><span class="meta"><b>600</b><span>#7A1515</span><span>W 10.79</span><span>D 1.60</span></span></li>
+<li class="empty"><span class="chip"></span><span class="meta"><b>700</b><span>none</span></span></li>
+<li class="empty"><span class="chip"></span><span class="meta"><b>800</b><span>none</span></span></li>
+<li class="empty"><span class="chip"></span><span class="meta"><b>900</b><span>none</span></span></li>
+</ol></div>
+<div class="srow"><p class="sname">v2.1 Error<small>10 stops, 50 to 900</small></p><ol class="scells">
+<li class=""><span class="chip" style="background:#FFEAE7"></span><span class="meta"><b>50</b><span>#FFEAE7</span><span>W 1.16</span><span>D 14.91</span></span></li>
+<li class=""><span class="chip" style="background:#FFD3CD"></span><span class="meta"><b>100</b><span>#FFD3CD</span><span>W 1.36</span><span>D 12.67</span></span></li>
+<li class=""><span class="chip" style="background:#FDA99D"></span><span class="meta"><b>200</b><span>#FDA99D</span><span>W 1.85</span><span>D 9.30</span></span></li>
+<li class=""><span class="chip" style="background:#FE7561"></span><span class="meta"><b>300</b><span>#FE7561</span><span>W 2.65</span><span>D 6.51</span></span></li>
+<li class=""><span class="chip" style="background:#FE4F3B"></span><span class="meta"><b>400</b><span>#FE4F3B</span><span>W 3.28</span><span>D 5.25</span></span></li>
+<li class="label"><span class="chip" style="background:#E02313"></span><span class="meta"><b>500</b><span>#E02313</span><span>W 4.75</span><span>D 3.62</span></span></li>
+<li class=""><span class="chip" style="background:#C51E10"></span><span class="meta"><b>600</b><span>#C51E10</span><span>W 5.89</span><span>D 2.93</span></span></li>
+<li class=""><span class="chip" style="background:#AF190C"></span><span class="meta"><b>700</b><span>#AF190C</span><span>W 7.08</span><span>D 2.43</span></span></li>
+<li class=""><span class="chip" style="background:#981509"></span><span class="meta"><b>800</b><span>#981509</span><span>W 8.58</span><span>D 2.01</span></span></li>
+<li class=""><span class="chip" style="background:#6D0C05"></span><span class="meta"><b>900</b><span>#6D0C05</span><span>W 12.32</span><span>D 1.40</span></span></li>
+</ol></div>
+<figcaption>W is contrast on white. D is contrast on #1B1B1B. An outlined chip takes a white label (4.5 on white) and holds 3 on #1B1B1B.</figcaption>
+</figure>
+<figure class="range" aria-label="Lightness range of the Error ramp. v2.0 Red spans 0.31 across 6 stops. v2.1 Error spans 0.61 across 10 stops, about twice the range, almost all of the extra at the light end.">
+<div class="rh" aria-hidden="true"><div class="hplot">
+<div class="hrow a"><p class="hname">v2.0 Red<small>6 stops</small></p><div class="hlabs"><span style="left:43.89%">100</span><span style="left:51.38%">200</span><span style="left:59.89%">300</span><span style="left:65.84%">400</span><span style="left:79.50%">500</span><span style="left:91.09%">600</span></div><div class="hbar"><i style="left:43.89%;width:calc(7.50% + 1px);background:linear-gradient(to right,#E96E6E,#E55151)"></i><i style="left:51.38%;width:calc(8.50% + 1px);background:linear-gradient(to right,#E55151,#DE2626)"></i><i style="left:59.89%;width:calc(5.96% + 1px);background:linear-gradient(to right,#DE2626,#CA2323)"></i><i style="left:65.84%;width:calc(13.65% + 1px);background:linear-gradient(to right,#CA2323,#9E1B1B)"></i><i style="left:79.50%;width:11.59%;background:linear-gradient(to right,#9E1B1B,#7A1515)"></i></div></div>
+<div class="hrow b"><p class="hname">v2.1 Error<small>10 stops</small></p><div class="hbar"><i style="left:2.61%;width:calc(7.72% + 1px);background:linear-gradient(to right,#FFEAE7,#FFD3CD)"></i><i style="left:10.33%;width:calc(13.71% + 1px);background:linear-gradient(to right,#FFD3CD,#FDA99D)"></i><i style="left:24.04%;width:calc(14.15% + 1px);background:linear-gradient(to right,#FDA99D,#FE7561)"></i><i style="left:38.19%;width:calc(7.79% + 1px);background:linear-gradient(to right,#FE7561,#FE4F3B)"></i><i style="left:45.98%;width:calc(13.80% + 1px);background:linear-gradient(to right,#FE4F3B,#E02313)"></i><i style="left:59.78%;width:calc(8.16% + 1px);background:linear-gradient(to right,#E02313,#C51E10)"></i><i style="left:67.94%;width:calc(6.90% + 1px);background:linear-gradient(to right,#C51E10,#AF190C)"></i><i style="left:74.83%;width:calc(7.26% + 1px);background:linear-gradient(to right,#AF190C,#981509)"></i><i style="left:82.10%;width:14.30%;background:linear-gradient(to right,#981509,#6D0C05)"></i></div><div class="hlabs"><span style="left:2.61%">50</span><span style="left:10.33%">100</span><span style="left:24.04%">200</span><span style="left:38.19%">300</span><span style="left:45.98%">400</span><span style="left:59.78%">500</span><span style="left:67.94%">600</span><span style="left:74.83%">700</span><span style="left:82.10%">800</span><span style="left:96.40%">900</span></div></div>
+<b class="hdash" style="left:43.89%"></b>
+<b class="harrow" style="left:2.61%;width:41.27%"></b>
+<span class="hcall" style="left:23.25%"><strong>Twice the range</strong><em>0.31 to 0.61</em></span>
+</div><p class="haxis"><span>Lighter</span><span>Darker</span></p></div>
+<div class="rv" aria-hidden="true">
+<div class="rhead"><span></span><span class="rname">v2.0 Red<small>6 stops</small></span><span></span><span class="rname">v2.1 Error<small>10 stops</small></span><span></span></div>
+<div class="rplot">
+<div class="rlab"><span style="top:43.89%">100</span><span style="top:51.38%">200</span><span style="top:59.89%">300</span><span style="top:65.84%">400</span><span style="top:79.50%">500</span><span style="top:91.09%">600</span></div>
+<div class="rbar"><i style="top:43.89%;height:calc(7.50% + 1px);background:linear-gradient(#E96E6E,#E55151)"></i><i style="top:51.38%;height:calc(8.50% + 1px);background:linear-gradient(#E55151,#DE2626)"></i><i style="top:59.89%;height:calc(5.96% + 1px);background:linear-gradient(#DE2626,#CA2323)"></i><i style="top:65.84%;height:calc(13.65% + 1px);background:linear-gradient(#CA2323,#9E1B1B)"></i><i style="top:79.50%;height:11.59%;background:linear-gradient(#9E1B1B,#7A1515)"></i></div>
+<div class="rmid"><b class="dash" style="top:43.89%"></b><b class="rarrow" style="top:2.61%;height:41.27%"></b>
+<span class="rcall" style="top:23.25%"><strong>Twice the range</strong><em>0.31 to 0.61</em></span></div>
+<div class="rbar"><i style="top:2.61%;height:calc(7.72% + 1px);background:linear-gradient(#FFEAE7,#FFD3CD)"></i><i style="top:10.33%;height:calc(13.71% + 1px);background:linear-gradient(#FFD3CD,#FDA99D)"></i><i style="top:24.04%;height:calc(14.15% + 1px);background:linear-gradient(#FDA99D,#FE7561)"></i><i style="top:38.19%;height:calc(7.79% + 1px);background:linear-gradient(#FE7561,#FE4F3B)"></i><i style="top:45.98%;height:calc(13.80% + 1px);background:linear-gradient(#FE4F3B,#E02313)"></i><i style="top:59.78%;height:calc(8.16% + 1px);background:linear-gradient(#E02313,#C51E10)"></i><i style="top:67.94%;height:calc(6.90% + 1px);background:linear-gradient(#C51E10,#AF190C)"></i><i style="top:74.83%;height:calc(7.26% + 1px);background:linear-gradient(#AF190C,#981509)"></i><i style="top:82.10%;height:14.30%;background:linear-gradient(#981509,#6D0C05)"></i></div>
+<div class="rlab r"><span style="top:2.61%">50</span><span style="top:10.33%">100</span><span style="top:24.04%">200</span><span style="top:38.19%">300</span><span style="top:45.98%">400</span><span style="top:59.78%">500</span><span style="top:67.94%">600</span><span style="top:74.83%">700</span><span style="top:82.10%">800</span><span style="top:96.40%">900</span></div>
+</div>
+</div>
+<figcaption>Each bar runs from the lightest stop to the darkest, on one lightness scale (light on the left). Segments are the steps between stops, filled with the real colours; the number is the stop. v2.1 reaches much lighter, which is where the surface tints sit.</figcaption>
+</figure>
 <table>
 <tr><th></th><th>v2.0 Red</th><th>v2.1 Error</th></tr>
 <tr><td>Stops</td><td>6</td><td>10</td></tr>
@@ -73,8 +118,7 @@
 <section class="band" id="decisions"><div class="in">
 <div class="tag">04 / Decisions</div>
 <h2>What I <mark>chose</mark>, and <em>what I gave up</em></h2>
-<img src="assets/trade-before-after-v2.png" alt="The Trade screen in dark mode, before and after v2.1, with notes on what changed">
-<p class="cap">The same trade ticket, before and after v2.1. Before: the current app colours, applied screen by screen. After: the v2.1 palette, applied by rule.</p>
+<figure><img src="assets/trade-before-after.webp" alt="The Trade screen in dark mode, before and after v2.1, with notes on what changed" width="3084" height="1980" loading="lazy" decoding="async"><figcaption>The same trade ticket, before and after v2.1. Before: the current app colours, applied screen by screen. After: the v2.1 palette, applied by rule.</figcaption></figure>
 <ol>
 <li><strong>Brighter fill over safer contrast.</strong> I solved two reds for the one-fill rule. One traded a little page contrast for a brighter, more brand-like colour. The other did the reverse. I took the brighter one.</li>
 <li><strong>Cut the lookalikes.</strong> Four reds sat 1.06 to 1.12:1 apart and looked the same. I kept one, dropped two as duplicates, and derived two fillers on the ramp's own hue and chroma.</li>
@@ -89,7 +133,7 @@
 <div class="tag">05 / Validation</div>
 <h2>Same rules, <mark>five</mark> real screens, <em>dark mode</em></h2>
 <p>I applied the v2.1 palette by rule to five screens in both modes, ten in all. Dark mode is shown here, before on the left and after on the right. The Trade screen is under Decisions.</p>
-<img src="assets/validation-dark.png" alt="Dark mode before and after pairs for Home, Me, Order details and Market data agreement">
+<figure><img class="light-only" src="assets/validation-dark.webp" alt="Dark mode before and after pairs for Home, Me, Order details and Market data agreement" width="3480" height="2930" loading="lazy" decoding="async"><img class="dark-only" src="assets/validation-dark-night.webp" alt="Dark mode before and after pairs for Home, Me, Order details and Market data agreement" width="3480" height="2930" loading="lazy" decoding="async"></figure>
 <div class="with-note">
 <aside class="margin">Not done yet: user testing. These screens show the rules hold up on real layouts. They don't show investors find them clearer. I'm still testing which changes work.</aside>
 <ul>
@@ -114,7 +158,7 @@
 <p>The old row had the colour. Nobody had asked the questions.</p>
 </section>
 </main>
-<footer class="wrap">Shin. Built as one static page.</footer>
 <script src="../reveal.js" defer></script>
+<footer class="wrap">Shin. <a href="../index.html">Home</a>, <a href="https://github.com/dofu">GitHub</a>. A UX designer walks into a bar, pushes the door marked pull, and blames the door.</footer>
 </body>
 </html>

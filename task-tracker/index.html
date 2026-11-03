@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A design system from scratch</title>
+<meta name="description" content="A design system built from nothing around a small to-do game: what it has to include, what each colour means, what Claude did that I changed, and how an audit keeps it right.">
+<meta name="theme-color" content="#1B1B1B">
+<meta property="og:title" content="A design system from scratch">
+<meta property="og:description" content="A design system built from nothing around a small to-do game: what it has to include, what each colour means, what Claude did that I changed, and how an audit keeps it right.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dofu.github.io/task-tracker/">
+<meta property="og:image" content="https://dofu.github.io/task-tracker/assets/share-preview.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme:dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<link rel="stylesheet" href="../styles.css?v=5aa988ec">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site wrap"><a class="brand" href="../index.html" aria-label="Shin, home">Shin</a><button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="o" d="M3 7h18M3 12h18M3 17h18"/><path class="x" d="M5 5l14 14M19 5L5 19"/></svg></button><nav aria-label="Site" id="site-nav"><a href="../index.html">Home</a><div class="menu is-current"><button class="menu-btn" type="button" aria-expanded="false" aria-controls="articles-menu">Articles<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul id="articles-menu"><li><a href="../error-ramp/index.html">One red, ten stops</a></li><li><a href="../font-size-study/index.html">Same study, two toolkits</a></li><li><a href="../p3-comp-lib/index.html">A design system you can prompt</a></li><li><a href="../ai-workflow/index.html">How I set up my AI workflow</a></li><li><a href="../task-tracker/index.html" aria-current="page">A design system from scratch</a></li></ul></div><a href="https://github.com/dofu" class="ext">Return to GitHub</a></nav><button class="theme" type="button" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="moon" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg></button></header>
+<main id="main" tabindex="-1">
+<div class="wrap"><h1>A <mark>design system</mark> <em>from scratch<span>.</span></em></h1>
+<p class="lede">A design system built from nothing, around a small to-do game: what it has to include, what each colour means, what Claude did that I changed, and how an audit keeps it right.</p>
+<ul class="tags" aria-label="Tags"><li>Design system</li><li>Colour</li><li>Components</li><li>Accessibility</li><li>AI workflow</li></ul>
+<ul class="stats">
+<li><span class="k">Type styles</span><s class="was"><span class="sr">Before: </span>26</s><span class="n"><span class="sr">Now: </span>7</span><span class="t">size and weight combinations in use, cut to one scale.</span></li>
+<li><span class="k">Age states</span><s class="was"><span class="sr">Before: </span>5</s><span class="n"><span class="sr">Now: </span>3</span><span class="t">Shiny, fresh, rotten: new, normal, overdue. The character carries the age.</span></li>
+<li class="found"><span class="k">Finding</span><s class="was"><span class="sr">Assumed: </span>One palette is enough</s><span class="n"><span class="sr">Found: </span>One job each</span><span class="t">Peach sat on a counter, two buttons and a tile. Butter on a tab, a toast and a note. I could not tell state from control.</span></li>
+</ul>
+<figure class="hero"><img src="assets/preview.webp" alt="Two windows of the task tracker over my own wallpaper: Focus mode with a pinned ticket and the In progress list, and the New task sheet with the date picker open. The tasks are made up." width="3000" height="2100" loading="lazy" decoding="async"></figure></div>
+<section class="wrap" id="problem">
+<div class="tag">01 / Problem statement</div>
+<h2>A system with <mark>nothing</mark> <em>inherited</em></h2>
+<p>Most design systems are inherited: a brand, old screens, other people's components. This one started from zero, around a small app with one user: a to-do game over the lists in Apple Reminders and Jira, where every task is a card that ages, with a rabbit whose face changes with it. That makes it a clean case for what a system needs, and what it does not.</p>
+<p>The words I use below. Each task is a card in its age colour, with a rabbit poking over the edge. The age has three states: shiny when the task is new or was updated this week, fresh in between, rotten when it is past its due date or has sat for 90 days. The card goes yellow, green or pink with it, and the rabbit's face goes excited, happy or dizzy. The task I choose to focus on is pinned to the top, with a swipe to the left, as a big blue card under a Focus mode heading. A bell holds new tickets. Pick an easy one, in the nav, asks Claude for the smallest task on the list. Pastel sky and Dusk are the two background themes, switched by the palette button.</p>
+<figure class="callouts">
+<div class="shot"><img src="assets/pinned.webp" alt="The Home screen with a pinned card, numbered 1 to 6 to match the list beside it" width="780" height="1688" loading="lazy" decoding="async"><b style="left:6%;top:62%">1</b><b style="left:4%;top:18%">2</b><b style="left:74%;top:6.5%">3</b><b style="left:90%;top:6.5%">4</b><b style="left:67%;top:92.7%">5</b><b style="left:8%;top:97%">6</b></div>
+<ol>
+<li>A card. Yellow, green or pink says shiny, fresh or rotten, and the rabbit's face says it again.</li>
+<li>Focus mode: the pinned card. The one task I chose to finish, raised to the top in blue.</li>
+<li>The palette button. It switches the background between Pastel sky and Dusk.</li>
+<li>The bell. New tickets, with who made them and when.</li>
+<li>Pick an easy one, the sparkle in the nav. Claude chooses the smallest task and writes the first step.</li>
+<li>The nav: tasks, review, add, easy one, refresh. Butter marks the active tab.</li>
+</ol>
+<figcaption>The words used on this page, on the screen they come from.</figcaption>
+</figure>
+<p>Claude drew the first screens in Figma from my references, fast, and every one looked finished. When the date picker came out the wrong size, nothing could be fixed in one place, because no value was a variable. That was the first of many things I had to catch, and the next section lists them all. None of it is a complaint about the tool. A screenshot can pass a glance and still break a rule, and the rule has to come from me. So I stopped drawing screens and built the system.</p>
+</section>
+<section class="wrap" id="constraints">
+<div class="tag">02 / Constraints</div>
+<h2>Four <mark>rules</mark> the system <em>had to meet</em></h2>
+<ul>
+<li>One job each. If a colour sits on two things that mean different things, one of them changes.</li>
+<li>Small enough to remember. If I cannot say what a colour is for, it goes.</li>
+<li>Nothing on a screen that is not in the scheme. A new colour goes into the scheme first, then onto a screen.</li>
+<li>Every element gives me something to act on. The header shows the date and the open count, not a brand. Clouds and stars stay on the background, where they cover nothing.</li>
+</ul>
+</section>
+<section class="wrap" id="mistakes">
+<div class="tag">03 / What I changed</div>
+<h2>What Claude <mark>did</mark>, <em>and what I changed instead</em></h2>
+<p class="lead">This is why you need to know your craft. Claude did the work and presented each step as done. I did not always agree, and nothing told me when to look: I found each of these by using the app and reading the file. Claude makes the work faster. It does not make it right, and it does not replace the person who knows what right looks like.</p>
+<table class="stack">
+<thead><tr><th>What Claude did</th><th>Why I did not agree</th><th>What I changed instead</th></tr></thead>
+<tbody>
+<tr><td><strong>The Jira link in red</strong></td><td data-label="Why I did not agree: ">Red had three jobs: warning, link and highest priority. And the warning red itself was a dull coral that did not read as one next to the pastels.</td><td data-label="What I changed instead: ">Red for warnings only, made vivid enough to read as a warning. Every button is mint.</td></tr>
+<tr><td><strong>One colour on a state, a surface and a control</strong></td><td data-label="Why I did not agree: ">Peach on the Waiting counter, two small buttons and the tiles. Butter on the selected tab, a toast and the note cards. Mint on the buttons and a counter. A number that looks like a button invites a tap.</td><td data-label="What I changed instead: ">One job per colour. Counters, toasts and notes went neutral. Butter means selected and nothing else.</td></tr>
+<tr><td><strong>Colours outside the scheme it had just built</strong></td><td data-label="Why I did not agree: ">A pinned card in a blue that matched nothing and a rotten tile in a pink that was in no swatch. When I asked what else broke the rule, it listed nine more. It had not checked its own screens against its own scheme.</td><td data-label="What I changed instead: ">Each got its own entry or was changed. The pink stayed, as an age colour, not a warning.</td></tr>
+<tr><td><strong>A colour scheme that was a list of hues</strong></td><td data-label="Why I did not agree: ">Pink, butter, peach, blue, a red, in the order they were made. No line on where each may appear, so nothing stopped pink being a button and a tile at once.</td><td data-label="What I changed instead: ">Grouped by job, three stops each, one line on where it may appear, in an even grid. The before and after is in the Colour section below.</td></tr>
+<tr><td><strong>Two sets of buttons, in two colours for the same job</strong></td><td data-label="Why I did not agree: ">When I asked for the red button fixed, Claude drew a second Buttons section beside the first instead of changing it, with mint and blue variants for the same action. It did not spot the duplicate. I did.</td><td data-label="What I changed instead: ">One Button family, one colour. The blue variants were deleted.</td></tr>
+<tr><td><strong>Two of other things as well</strong></td><td data-label="Why I did not agree: ">A second colour scheme, an Extras row repeated on the flow board, and loose copies of components sitting beside the components. A system with two of anything is two systems.</td><td data-label="What I changed instead: ">One scheme bound to the variables, one UI board, and the loose copies replaced by instances.</td></tr>
+<tr><td><strong>A Task row component with two Rotten variants and no Shiny</strong></td><td data-label="Why I did not agree: ">The Shiny variant was named Rotten and carried the rotten carrot on the butter tile, so the state and the picture disagreed. The priority field opened a picker of components instead of a dropdown. Claude had just reported 55 rows swapped to this component. I found it by opening one. Elsewhere a wrapper frame carried the same name as its component, and variant sets rebuilt with combine-as-variants came out with corrupted names.</td><td data-label="What I changed instead: ">The variant renamed and rebuilt, priority as a plain dropdown, and every row on the screens checked afterwards: 51, none changed. Rule: one name per thing, and a new variant is cloned inside the set and renamed.</td></tr>
+<tr><td><strong>Text fixed inside each variant, with a real task as the library sample</strong></td><td data-label="Why I did not agree: ">A component whose text cannot change is a picture, and a real ticket sitting in a library is a leak waiting to happen. Three states of the Task row all showed the same ticket.</td><td data-label="What I changed instead: ">Every text is a field. The library shows placeholders: Task title, Status · date, Button label, 00. Each instance carries its own words.</td></tr>
+<tr><td><strong>Type styles named by where they were first used</strong></td><td data-label="Why I did not agree: ">Number, Card title, Meta. A style outlives the card it was drawn for, and a name tied to a place misleads the next person.</td><td data-label="What I changed instead: ">Named by role and size: Display, Headline, Title, Body, Label, in Small, Medium or Large. The table is below.</td></tr>
+<tr><td><strong>A mock browser window treated as part of the design</strong></td><td data-label="Why I did not agree: ">It was recoloured and audited like a screen. A note is not the system.</td><td data-label="What I changed instead: ">Marked as a note and left out of the audit.</td></tr>
+<tr><td><strong>Typography, spacing and layout as loose frames</strong></td><td data-label="Why I did not agree: ">Each in a different style, with elements in the order they were built. A board nobody can scan is not a reference.</td><td data-label="What I changed instead: ">Every section the same look. Elements grouped by likeness, small to large, so labels sit with labels and cards at the bottom.</td></tr>
+<tr><td><strong>Reported screens as done without looking at them</strong></td><td data-label="Why I did not agree: ">More than once the reply said so in passing: "I never looked at them." A report is not a check.</td><td data-label="What I changed instead: ">I look at every screen myself, and a script checks the app's contrast across seven states.</td></tr>
+<tr><td><strong>Put a different character in when an upload failed, and left stray nodes after a failed script</strong></td><td data-label="Why I did not agree: ">A silent substitute is worse than an error, because nothing flags it.</td><td data-label="What I changed instead: ">The right character uploaded again and the stray nodes removed. I read the board after every script run.</td></tr>
+<tr><td><strong>Let the app drift from the file</strong></td><td data-label="Why I did not agree: ">A 112px carrot where the file said 150, extra space under a button, an emoji pin where the file had a vector, the bell icon inside the theme button. The file is the source, and the app follows it value for value.</td><td data-label="What I changed instead: ">Each one matched to the file.</td></tr>
+<tr><td><strong>Built the variables, then left 30 colours outside them</strong></td><td data-label="Why I did not agree: ">The same with text: 33 texts with no style and 5 under 12px, most on the flow board's own scaffolding. A system half applied is a list of intentions.</td><td data-label="What I changed instead: ">All bound and styled by script, and an audit section in the file so the next miss shows up as a number.</td></tr>
+<tr><td><strong>Clipped the hard shadows on 1,082 frames, and dropped gradient stops</strong></td><td data-label="Why I did not agree: ">The lip is what makes a box read as a box, and the clip cut it off. A lost stop makes a gradient flat.</td><td data-label="What I changed instead: ">Clipping turned off by script on 1,082 frames, then 382 more, and the stops put back. The crop audit now finds 0 cut-off children.</td></tr>
+</tbody>
+</table>
+<h3>The seven type styles, renamed</h3>
+<figure class="typescale"><div class="row"><s>Number</s><strong>Display Small</strong><span class="sample" style="font-size:68px;font-weight:800">34</span><span class="spec">Bold 34</span></div><div class="row"><span class="nil">Added later</span><strong>Headline Large</strong><span class="sample" style="font-size:60px;font-weight:500">Mon 2 Nov</span><span class="spec">Medium 30</span></div><div class="row"><s>Title</s><strong>Headline Medium</strong><span class="sample" style="font-size:52px;font-weight:600">Headline</span><span class="spec">Semibold 26</span></div><div class="row"><s>Card title</s><strong>Title Medium</strong><span class="sample" style="font-size:36px;font-weight:600">Title</span><span class="spec">Semibold 18</span></div><div class="row"><s>Body</s><strong>Body Medium</strong><span class="sample" style="font-size:28px;font-weight:700">Body text, inputs and chips</span><span class="spec">Bold 14</span></div><div class="row"><s>Label</s><strong>Label Medium</strong><span class="sample" style="font-size:24px;font-weight:800">LABEL</span><span class="spec">Extra bold 12</span></div><div class="row"><s>Meta</s><strong>Body Small</strong><span class="sample" style="font-size:24px;font-weight:700">Secondary line</span><span class="spec">Bold 12</span></div><figcaption>The seven styles, with the name Claude gave each and the name it has now. Headline Large came later, for the date, and never had an old name. Shown here at twice their size, so the 12px styles read on this page.</figcaption></figure>
+<p>Each of these was caught by looking, not by asking the tool whether it was done. The speed was real: seven versions of Home in a day, 572 texts restyled in one pass, a contrast check across seven states in a minute. The judgement was not in the tool.</p>
+</section>
+<section class="wrap" id="include">
+<div class="tag">04 / What I created</div>
+<h2>What I <mark>made</mark>, <em>and what it covers</em></h2>
+<p class="lead">The system as it stands: what it holds, in numbers, then the nine parts and the rule each one exists to enforce. What it leaves out is in Decisions.</p>
+<dl class="method">
+<div><dt>Tokens</dt><dd>Colour variables grouped by job, with Pastel sky and Dusk as two modes. Space in six steps from 4 to 28px. Radius in six steps from 12 to 44px.</dd></div>
+<div><dt>Type</dt><dd>Seven styles, 34 to 12px, named by role and size. Nothing under 12px.</dd></div>
+<div><dt>Icons</dt><dd>One set of 16, the same 2.4px line and round ends, swappable inside the components that hold them.</dd></div>
+<div><dt>Components</dt><dd>About 20 sets with fields and states: button, icon button, nav item, task row, header, chips, input, day cell, toast, and the one-off cards.</dd></div>
+<div><dt>Characters</dt><dd>One rabbit with three faces for the cards, and ten poses for the empty states and the easy-win card.</dd></div>
+<div><dt>Screens</dt><dd>Eight flow screens at phone height, with notes beside them, plus offline, error and loading states.</dd></div>
+<div><dt>Audit</dt><dd>An audit section in the file, and a script that checks every line of text in the app across seven states.</dd></div>
+<div><dt>App</dt><dd>One HTML file and a small server, matched to the file value for value, installed in my Dock.</dd></div>
+</dl>
+<h3>Nine parts, each with a rule</h3>
+<p>What the file holds now, and the one-line rule each part exists to enforce. Every part came from a mistake above.</p>
+<table class="stack">
+<thead><tr><th>Part</th><th>What is in it</th><th>Rule</th></tr></thead>
+<tbody>
+<tr><td><strong>Colour</strong></td><td data-label="What is in it: ">The scheme grouped by job: surface, text, background, action, selected, navigation, warning, success, the pinned and easy-win cards, the rabbit and stars, and the three ages. Each box colour is one hue in up to five stops: top and base for the fill, a shade, an outline and a lip.</td><td data-label="Rule: ">One job per colour. Tints of one hue, no ramps.</td></tr>
+<tr><td><strong>Type</strong></td><td data-label="What is in it: ">Seven styles: 34, 30, 26, 18, 14 and two at 12, named by role.</td><td data-label="Rule: ">Every text on a style. Nothing under 12px.</td></tr>
+<tr><td><strong>Space and radius</strong></td><td data-label="What is in it: ">Spacing from 4 to 28px and corner radius from 12 to 44px, as variables.</td><td data-label="Rule: ">No loose numbers in a frame.</td></tr>
+<tr><td><strong>Components</strong></td><td data-label="What is in it: ">Everything used more than once, with fields for its text and variants for its states. Then the one-off cards too, so the board shows everything the app has.</td><td data-label="Rule: ">Nothing on a screen is a loose copy.</td></tr>
+<tr><td><strong>Icons</strong></td><td data-label="What is in it: ">One set of 16, the same 2.4px line and round ends, swappable inside the components that hold them.</td><td data-label="Rule: ">No pasted vectors.</td></tr>
+<tr><td><strong>Modes</strong></td><td data-label="What is in it: ">Pastel sky and Dusk as two modes on the same variables.</td><td data-label="Rule: ">A theme is a mode, not a second palette.</td></tr>
+<tr><td><strong>States</strong></td><td data-label="What is in it: ">Offline, error, loading and focus. The offline and error screens show the rabbit, one line and a Try again.</td><td data-label="Rule: ">A state is a screen, not a note.</td></tr>
+<tr><td><strong>Audit</strong></td><td data-label="What is in it: ">A section in the file: every text colour on its background, Pass or Fail with the ratio. A script that does the same on the app.</td><td data-label="Rule: ">Checked by script, not by eye.</td></tr>
+<tr><td><strong>Rules</strong></td><td data-label="What is in it: ">Written on the board: phone width, screen padding, spacing, card padding and radius, buttons, overlay, nav, colour roles.</td><td data-label="Rule: ">If it is not written down, it is not a rule.</td></tr>
+</tbody>
+</table>
+<figure class="board"><ol><li><b>1</b><strong>References</strong><span>My two images, five kawaii screens, Mobbin.</span></li><li><b>2</b><strong>Characters</strong><span>The rabbit: three faces and ten poses.</span></li><li><b>3</b><strong>Colour</strong><span>The scheme, bound to the variables.</span></li><li><b>4</b><strong>Typography</strong><span>Seven styles.</span></li><li><b>5</b><strong>Spacing and radius</strong><span>4 to 28px, 12 to 44px.</span></li><li><b>6</b><strong>Layout and padding</strong><span>Phone width, gutters, card padding, nav.</span></li><li><b>7</b><strong>UI elements</strong><span>Every component, with fields and states.</span></li><li><b>8</b><strong>Flow v2</strong><span>Eight screens, phone height, notes beside them.</span></li><li><b>9</b><strong>Audit</strong><span>Every text colour on its background, with the ratio.</span></li><li class="arc"><strong>Archive</strong><span>Seven old Home versions and Flow v1, kept apart.</span></li></ol><figcaption>The Figma page, section by section. One file, nine named sections, and the old work in an archive instead of beside the new.</figcaption></figure>
+<p>The app, matched to the file. Made-up tasks, real colours.</p>
+<figure class="shots">
+<div><img src="assets/home.webp" alt="Home screen: a periwinkle to pink background with clouds and stars, the date, and a list of task cards. Each card is pink, yellow or green for rotten, shiny or fresh, with a rabbit whose face matches poking over the card edge. A blue nav holds tasks, review, add, a sparkle for an easy one, and refresh." width="780" height="1688" loading="lazy" decoding="async"><span>Home. A yellow, green or pink card for shiny, fresh or rotten, and the rabbit's face to match. Butter on the active tab only.</span></div>
+<div><img src="assets/pinned.webp" alt="A pinned task card under a Focus mode heading: a happy rabbit, the ticket key, a large title, chips for priority, status and due date, and a full-width mint Open in Jira button." width="780" height="1688" loading="lazy" decoding="async"><span>Pinned. Blue for the card and the nav bar, and nowhere else.</span></div>
+<div><img src="assets/easy.webp" alt="An easy-win card above the list: a happy rabbit, the task Book the dentist, one line on why it is easy, a first step, two mint buttons to start 5 minutes or mark it done, and text buttons to skip it or be nudged in 30 minutes." width="780" height="1688" loading="lazy" decoding="async"><span>Easy win. Mint on the two ways to finish, plain text for the two ways out.</span></div>
+<div><img src="assets/add.webp" alt="A New task overlay with a text field, chips for Today, Tomorrow, This week, Pick a date and No date, and an Add to Reminders button." width="780" height="1688" loading="lazy" decoding="async"><span>Add. Butter on the chosen date only.</span></div>
+<figcaption class="cap">Screens from the app, filled with made-up tasks.</figcaption>
+</figure>
+</section>
+<section class="wrap" id="colour">
+<div class="tag">05 / Colour</div>
+<h2>What each <mark>colour</mark> <em>means</em></h2>
+<p class="lead">At first it was just colours. Then I asked for them arranged by function. Each colour is now one hue in the stops its box needs, a top and a base for the fill, then a shade, an outline and a lip of the same hue, with one line on where it may appear.</p>
+<figure class="swatches">
+<div class="before"><span class="k">Before: a list of colours</span><div class="loose"><div><i style="background:#FF92BF"></i><span>pink</span></div><div><i style="background:#FFA08C"></i><span>coral</span></div><div><i style="background:#FFE48A"></i><span>butter</span></div><div><i style="background:#FFEBDD"></i><span>peach</span></div><div><i style="background:#7FDCCB"></i><span>mint</span></div><div><i style="background:#9CE8C2"></i><span>green</span></div><div><i style="background:#E6D9FF"></i><span>lilac</span></div><div><i style="background:#9BD2FF"></i><span>blue</span></div><div><i style="background:#DDEBFF"></i><span>light blue</span></div><div><i style="background:#FFFBF2"></i><span>cream</span></div><div><i style="background:#FF6F5E"></i><span>red</span></div><div><i style="background:#3B2A2F"></i><span>ink</span></div></div><p>What Claude handed over. Named by hue, in the order they were made, with no line on where each may appear. Pink was the button and a tile, blue was a link and a card.</p></div>
+<span class="k">After: grouped by job</span>
+<ul>
+<li><span class="stops" aria-hidden="true"><i style="background:#FFFBF2"></i><i style="background:#EBCBD3"></i><i style="background:#D9A3B0"></i><i style="background:#CE9BA7"></i></span><strong>Surface</strong><span>Sheets, fields and chips. Cream with a rose shade, outline and lip.</span></li>
+<li><span class="stops" aria-hidden="true"><i style="background:#B8F0E6"></i><i style="background:#7FDCCB"></i><i style="background:#3EB7A1"></i><i style="background:#369888"></i></span><strong>Action</strong><span>Every button, including the link to Jira.</span></li>
+<li><span class="stops" aria-hidden="true"><i style="background:#FFF0A8"></i><i style="background:#FFE48A"></i><i style="background:#F1C532"></i><i style="background:#B89031"></i></span><strong>Selected</strong><span>The active tab and the chosen date. The shiny card has its own yellow, so butter means one thing.</span></li>
+<li><span class="stops" aria-hidden="true"><i style="background:#CFE9FF"></i><i style="background:#9BD2FF"></i><i style="background:#42A3F2"></i><i style="background:#4D8DC3"></i></span><strong>Navigation and links</strong><span>The nav bar only. Buttons are always mint.</span></li>
+<li><span class="stops" aria-hidden="true"><i style="background:#E4F0FF"></i><i style="background:#CDE3FF"></i><i style="background:#71ABF5"></i><i style="background:#4D8DC3"></i></span><strong>Pinned card</strong><span>The one big card on top. Light blue so it stands out, with the blue edge.</span></li>
+<li><span class="stops" aria-hidden="true"><i style="background:#FFA08C"></i><i style="background:#FF6F5E"></i><i style="background:#E04A3A"></i></span><strong>Warning</strong><span>Overdue and the high priorities. Never a button or link.</span></li>
+<li><span class="stops" aria-hidden="true"><i style="background:#FFF9D6"></i><i style="background:#FFEEA0"></i><i style="background:#F6D77A"></i><i style="background:#EBC45A"></i><i style="background:#E6C15C"></i></span><strong>Shiny</strong><span>A card made or updated this week.</span></li>
+<li><span class="stops" aria-hidden="true"><i style="background:#E2FAEE"></i><i style="background:#BDF0D6"></i><i style="background:#8FDCB4"></i><i style="background:#78C8A0"></i><i style="background:#86C9A6"></i></span><strong>Fresh</strong><span>A normal card.</span></li>
+<li><span class="stops" aria-hidden="true"><i style="background:#FFE8F1"></i><i style="background:#FFD0E3"></i><i style="background:#F9A8C8"></i><i style="background:#E68CAF"></i><i style="background:#E592B4"></i></span><strong>Rotten</strong><span>A card 7 days overdue or 90 days idle. An age, not a warning.</span></li>
+</ul>
+<figcaption>The scheme after I asked for it arranged by what each colour does, as it sits in the file now. Each group is one hue in the stops its box needs, and one job. Text, the two backgrounds, the easy-win peach, a success green, the priority chips and the star yellow are the rest.</figcaption>
+</figure>
+<table class="stack">
+<thead><tr><th>State</th><th>How it shows</th><th>Never with</th></tr></thead>
+<tbody>
+<tr><td><strong>Age</strong></td><td data-label="How it shows: ">The card itself, yellow, green or pink, and the rabbit's face: excited with sparkles, happy, or dizzy with swirl eyes.</td><td data-label="Never with: ">A control. No button, chip or tab wears an age colour, and the shiny card has its own yellow, apart from the selected butter.</td></tr>
+<tr><td><strong>Priority</strong></td><td data-label="How it shows: ">A chip that runs cool to warm: blue for lowest and low, butter for medium, orange for high, a red tint for highest.</td><td data-label="Never with: ">Date labels. They are neutral, so a date and a priority can never be read as the same thing.</td></tr>
+<tr><td><strong>Overdue</strong></td><td data-label="How it shows: ">In words on the card's date line, and as a salmon date chip on the pinned card.</td><td data-label="Never with: ">Buttons or links. Red is never something to tap.</td></tr>
+<tr><td><strong>Selected</strong></td><td data-label="How it shows: ">Butter on the active tab and the chosen date.</td><td data-label="Never with: ">Toasts, notes and the shiny card. The shiny card got its own warmer yellow so butter means one thing.</td></tr>
+<tr><td><strong>Action</strong></td><td data-label="How it shows: ">Mint on every button, including the link to Jira.</td><td data-label="Never with: ">A card or a chip. Only things you can tap are mint.</td></tr>
+<tr><td><strong>Navigation</strong></td><td data-label="How it shows: ">The blue nav bar, and a lighter blue on the pinned card so it stands apart from the list.</td><td data-label="Never with: ">Buttons. The blue button variants were deleted.</td></tr>
+</tbody>
+</table>
+<h3>How the tokens are named</h3>
+<p>Two layers. The lower layer is the primitives, and only there does a name say a hue: a family and a step, Blue/150, Ink/250, Peach/100. The upper layer is the one the components point at, and a name there says the property and the role: Text/primary, Surface/outline, Action/base, Background/top. No hue, no scenario and no component name, so a token outlives the screen it was first drawn for, the same rule the type styles follow. A theme lives in that upper layer too: Background/top points at Violet/050 in Pastel sky and at Violet/100 in Dusk, and that is the whole difference between the two.</p>
+<p>It was not built that way. Claude named the first tokens for where they sat, a nav blue, a pinned-card blue, a low-priority blue, and when I asked for the duplicates merged it merged by value, so the hue came back as the name: Blue/top, Red/base. One edit to Blue/top then moved the nav bar, the pinned card and the low chip together, which nobody wanted. The rule I took from it: share a token inside one role, so overdue, blocked and the error toast all use Error/fill, and split it where two things should be free to change on their own, so the priority chips have fills of their own. Two layers rather than three. A component layer, Button/fill and Chip/text, would have doubled the tokens for an app with one button colour.</p>
+<figure class="tokenmap">
+<div class="hd"><span>Primitive: hue and step</span><span>Token: property and role, and where it shows</span></div>
+<ol>
+<li><div class="prim"><i style="background:#FFF9D6"></i><strong>Yellow/050</strong><span>#FFF9D6</span></div><ul class="toks one"><li><strong>Card/shiny-top</strong><span>The top of the shiny card's fill.</span></li></ul></li>
+<li><div class="prim"><i style="background:#FFF0A8"></i><strong>Yellow/100</strong><span>#FFF0A8</span></div><ul class="toks two"><li><strong>Card/shiny-base</strong><span>The base of the shiny card's fill.</span></li><li><strong>Priority/medium-fill</strong><span>The Medium chip. Same step, its own token, so the chip can change without the card.</span></li></ul></li>
+<li><div class="prim"><i style="background:#FFE48A"></i><strong>Yellow/150</strong><span>#FFE48A</span></div><ul class="toks one"><li><strong>Selected/base</strong><span>The active tab and the chosen date.</span></li></ul></li>
+<li><div class="prim"><i style="background:#F6D77A"></i><strong>Yellow/200</strong><span>#F6D77A</span></div><ul class="toks one"><li><strong>Card/shiny-line</strong><span>The shiny card's outline.</span></li></ul></li>
+<li><div class="prim"><i style="background:#FFD62E"></i><strong>Yellow/250</strong><span>#FFD62E</span></div><ul class="toks one"><li><strong>Decoration/star</strong><span>The sparkle stars.</span></li></ul></li>
+</ol>
+<figcaption>One hue, five steps, six tokens, with the file's own values. The step says how light the yellow is; the token says what it is for. The shiny card, the selected tab, the Medium chip and the stars draw on one family and keep their own names, so any one of them can change without the others. The card's shade and lip come from Gold, the darker family.</figcaption>
+</figure>
+</section>
+<section class="wrap" id="components">
+<div class="tag">06 / Components</div>
+<h2><mark>Components</mark> <em>with fields</em></h2>
+<p>Nothing on a screen is a loose copy. Each component has fields for its text and variants for its states, so a change in the library reaches every screen, and a screen never needs a detached frame to say something different. In the library the fields hold placeholders, so no real task ever sits there. The Task row is the one used most: 51 instances across the flow.</p>
+<figure class="comp">
+<div class="demo" aria-label="The Task row component in its four states, with placeholder text">
+<div class="trow shiny"><span class="tile"><img src="assets/rabbit-shiny.webp" alt="" width="284" height="284" loading="lazy" decoding="async"></span><span class="txt"><strong>Task title</strong><span class="meta"><span class="chip" style="background:#FFF0A8;color:#6B3B00">Priority</span><span>Status · date</span></span></span><span class="st">State: Shiny</span></div>
+<div class="trow fresh"><span class="tile"><img src="assets/rabbit-fresh.webp" alt="" width="284" height="284" loading="lazy" decoding="async"></span><span class="txt"><strong>Task title</strong><span class="meta"><span class="chip" style="background:#FFF0A8;color:#6B3B00">Priority</span><span>Status · date</span></span></span><span class="st">State: Fresh</span></div>
+<div class="trow rotten"><span class="tile"><img src="assets/rabbit-rotten.webp" alt="" width="284" height="284" loading="lazy" decoding="async"></span><span class="txt"><strong>Task title</strong><span class="meta"><span class="chip" style="background:#FFF0A8;color:#6B3B00">Priority</span><span>Status · date</span></span></span><span class="st">State: Rotten</span></div>
+<div class="trow done"><span class="tile"><img src="assets/rabbit-fresh.webp" alt="" width="284" height="284" loading="lazy" decoding="async"></span><span class="txt"><strong>Task title</strong><span class="meta"><span class="chip" style="background:#FFF0A8;color:#6B3B00">Priority</span><span>Status · date</span></span></span><span class="st">State: Done</span></div>
+</div>
+<dl class="props" aria-label="Fields on the Task row component">
+<div><dt>State</dt><dd>Shiny, Fresh, Rotten, Done. Sets the card colour and the rabbit's face. Done mutes the card and strikes the title through.</dd></div>
+<div><dt>Title</dt><dd>Text. Wraps to three lines, then an ellipsis.</dd></div>
+<div><dt>Meta</dt><dd>Text. One line: the status and the date.</dd></div>
+<div><dt>Show priority</dt><dd>On when the task has a priority.</dd></div>
+<div><dt>Priority</dt><dd>Lowest, Low, Medium, High, Highest, set on the label inside the row. A dropdown, not a component picker.</dd></div>
+</dl>
+<figcaption>The Task row as it sits in the library: placeholders, not a task. Each row on a screen gets its own words through the fields.</figcaption>
+</figure>
+<h3>One component, documented: the Task row</h3>
+<p>Written the way Material Design documents a component, so the next person can see what is fixed, what is a field and what is a rule without opening the layers.</p>
+<figure class="comp anatomy">
+<div class="demo" aria-label="The Task row with its six parts numbered">
+<div class="trow fresh"><span class="tile"><img src="assets/rabbit-fresh.webp" alt="" width="284" height="284" loading="lazy" decoding="async"><b class="n">1</b></span><span class="txt"><strong>Task title<b class="n">2</b></strong><span class="meta"><span class="chip" style="background:#FFF0A8;color:#6B3B00">Priority</span><b class="n">3</b><span>Status · date</span><b class="n">4</b></span></span><b class="n edge">5</b><b class="n gloss">6</b></div>
+</div>
+<ol class="legend">
+<li><b>1</b><div><strong>Rabbit</strong><span>The state's face, 128 by 124 over a 96 by 80 slot, so it pokes past the card. The card never clips.</span></div></li>
+<li><b>2</b><div><strong>Title</strong><span>Field. Title/Medium in Text/primary. Wraps to three lines, then an ellipsis.</span></div></li>
+<li><b>3</b><div><strong>Priority label</strong><span>An instance of the Priority label component. Its level is set on the label; Show priority hides it.</span></div></li>
+<li><b>4</b><div><strong>Meta line</strong><span>Field. Body/Small in Text/secondary: the status, a dot, and the date as Nd ago, Nd overdue or N days left.</span></div></li>
+<li><b>5</b><div><strong>Card body</strong><span>358 wide, height hugs. A two-stop fill of the state's family, Card/fresh-top to Card/fresh-base here, a 3px outline in Card/fresh-line, a 5px lip below and a 5px highlight inside. Radius 28, padding 10, 12, 10, 10, gap 12.</span></div></li>
+<li><b>6</b><div><strong>Gloss</strong><span>A 3px curve and a dot in Surface/white at the top right. Decoration only.</span></div></li>
+</ol>
+<figcaption>Anatomy. Every colour on the card is a token of its state's family, and nothing on it is a loose value.</figcaption>
+</figure>
+<table class="stack">
+<thead><tr><th>State</th><th>When</th><th>Fill, outline and face</th></tr></thead>
+<tbody>
+<tr><td><strong>Shiny</strong></td><td data-label="When: ">Made or updated this week.</td><td data-label="Fill, outline and face: ">Card/shiny-top to Card/shiny-base, outline Card/shiny-line. Excited, with sparkles.</td></tr>
+<tr><td><strong>Fresh</strong></td><td data-label="When: ">Everything else.</td><td data-label="Fill, outline and face: ">Card/fresh-top to Card/fresh-base, outline Card/fresh-line. Happy.</td></tr>
+<tr><td><strong>Rotten</strong></td><td data-label="When: ">7 days overdue or 90 days idle.</td><td data-label="Fill, outline and face: ">Card/rotten-top to Card/rotten-base, outline Card/rotten-line. Dizzy, with swirl eyes.</td></tr>
+<tr><td><strong>Done</strong></td><td data-label="When: ">Ticked off in Reminders.</td><td data-label="Fill, outline and face: ">Surface/cream to Surface/warm, outline Surface/shade. The title struck through in Text/secondary, and the happy face.</td></tr>
+</tbody>
+</table>
+<dl class="method">
+<div><dt>Fields</dt><dd>Title (text), Meta (text), Show priority (on or off), State (Shiny, Fresh, Rotten, Done). The priority level is set on the label inside.</dd></div>
+<div><dt>Behaviour</dt><dd>The whole card opens the ticket. Swipe left pins it to Focus mode. With a pointer, hover lifts it 2px.</dd></div>
+<div><dt>Do</dt><dd>Set the state with the variant. Put a long title in the field and let it truncate. Hide the label with Show priority.</dd></div>
+<div><dt>Don't</dt><dd>Detach a row to recolour it. Grow the card for a long title. Delete the label from an instance. Turn clipping on. Type a real task into the library: the defaults are Task title and Status · date.</dd></div>
+<div><dt>Checked</dt><dd>Both texts clear 4.5:1 on all four fills, 6.5 at the lowest, and nothing on the card is under 12px.</dd></div>
+</dl>
+<table class="stack">
+<thead><tr><th>Component</th><th>Fields</th><th>States</th></tr></thead>
+<tbody>
+<tr><td><strong>Button</strong><img class="ci" src="assets/c-button.webp" alt="The Button component: mint, large, default state" width="300" height="118" loading="lazy" decoding="async"></td><td data-label="Fields: ">Label. A leading icon toggle, with the icon as a swap.</td><td data-label="States: ">Default, hover, pressed, disabled, focus. Large and small. One colour.</td></tr>
+<tr><td><strong>Icon button</strong><img class="ci" src="assets/c-icon-button.webp" alt="The Icon button component: a white tile with a close cross" width="72" height="72" loading="lazy" decoding="async"></td><td data-label="Fields: ">The icon, as a swap.</td><td data-label="States: ">Close and pin.</td></tr>
+<tr><td><strong>Header</strong><img class="ci" src="assets/c-header.webp" alt="The Header component: date, summary line, theme button and bell" width="720" height="122" loading="lazy" decoding="async"></td><td data-label="Fields: ">Date, summary, badge count, show badge.</td><td data-label="States: ">With the theme button.</td></tr>
+<tr><td><strong>Input field</strong><img class="ci" src="assets/c-input.webp" alt="The Input field component in its default state" width="640" height="142" loading="lazy" decoding="async"></td><td data-label="Fields: ">Value.</td><td data-label="States: ">Default, focus, error, empty, disabled.</td></tr>
+<tr><td><strong>Day cell</strong><img class="ci" src="assets/c-day-cell.webp" alt="The Day cell component, selected: butter with a gold outline" width="88" height="82" loading="lazy" decoding="async"></td><td data-label="Fields: ">Day.</td><td data-label="States: ">Default, today, selected, past.</td></tr>
+<tr><td><strong>Toast</strong><img class="ci" src="assets/c-toast.webp" alt="The Toast component, info type" width="342" height="94" loading="lazy" decoding="async"></td><td data-label="Fields: ">Message.</td><td data-label="States: ">Info, success, error.</td></tr>
+<tr><td><strong>Info chip</strong><img class="ci" src="assets/c-info-chip.webp" alt="The Info chip component showing In Progress" width="170" height="48" loading="lazy" decoding="async"></td><td data-label="Fields: ">Key.</td><td data-label="States: ">To do, in progress, in review, done, blocked, key.</td></tr>
+<tr><td><strong>Notification row</strong><img class="ci" src="assets/c-notification-row.webp" alt="The Notification row component: title, key chip and date label" width="780" height="232" loading="lazy" decoding="async"></td><td data-label="Fields: ">Title, meta.</td><td data-label="States: ">Date type: new, old, due, overdue.</td></tr>
+<tr><td><strong>Labels and chips</strong><img class="ci" src="assets/c-priority-label.webp" alt="The Priority label component, Medium: butter fill, no outline" width="132" height="44" loading="lazy" decoding="async"></td><td data-label="Fields: ">Set by the variant, since each needs its own text.</td><td data-label="States: ">Priority label, five. Date label, four. Due chip.</td></tr>
+<tr><td><strong>Cards</strong><img class="ci" src="assets/c-pinned-card.webp" alt="The Pinned card component with its placeholder text and the rabbit" width="735" height="518" loading="lazy" decoding="async"></td><td data-label="Fields: ">Title and body text on each.</td><td data-label="States: ">Pinned, easy win, add task, new cards. One-offs, but components after I asked, so the board shows everything the app has.</td></tr>
+</tbody>
+</table>
+</section>
+<section class="band soft" id="decisions"><div class="in">
+<div class="tag">07 / Decisions</div>
+<h2>What I <mark>chose</mark>, <em>and what I gave up</em></h2>
+<p><strong>Chose.</strong> Minimal and actionable. Home shows the date, the open count, a pinned card and the tasks. New tickets sit in the bell as a badge, not on the page. Each card shows the rabbit, a title of at most three lines, a priority chip and one date line. One hue per job with its own outline and lip, not ramps. Five layers on every box, highlight, fill, shade, outline and lip, in tints of the box's own colour, so the panels read as soft objects without a new hue. A theme as a variable mode, so Pastel sky and Dusk share every other colour.</p>
+<p><strong>Kept out.</strong> Full ramps. Dark mode. A streak-first home. Any check that ran on its own. A nudge line, and in the end the counters above the list.</p>
+<p><strong>Gave up.</strong> Five age states and their characters. Blue buttons. Rotten as the warning red: I liked the pink, so it became an age colour with its own entry. The food characters, for one rabbit whose face carries the age. Meadow, because its green hid the fresh cards.</p>
+<figure class="chars">
+<div><img src="assets/rabbit-shiny.webp" alt="A rabbit character with wide eyes, an open smile and sparkles" width="284" height="284" loading="lazy" decoding="async"><span>Shiny. Made or updated this week.</span></div>
+<div><img src="assets/rabbit-fresh.webp" alt="A rabbit character with a calm smile and a small heart" width="284" height="284" loading="lazy" decoding="async"><span>Fresh. The normal state.</span></div>
+<div><img src="assets/rabbit-rotten.webp" alt="A rabbit character with swirl eyes and a dizzy swirl beside its head" width="284" height="284" loading="lazy" decoding="async"><span>Rotten. 7 days past due, or 90 days with no update.</span></div>
+<figcaption>The rabbit's three faces. The card behind it goes yellow, green, pink.</figcaption>
+</figure>
+</div></section>
+<section class="wrap" id="validation">
+<div class="tag">08 / Validation</div>
+<h2>How the <mark>contrast</mark> audit <em>runs</em></h2>
+<p class="lead">A script, not my eye, because the backgrounds are gradients and an overlay sits on top of some screens.</p>
+<figure class="auditfig">
+<div class="steps">
+<div><b>1</b><span class="panel"><span class="t" style="color:#5A4350">7 tasks, sorted by priority</span></span><p>Find the text and read its colour.</p></div>
+<div><b>2</b><span class="panel"><span class="t ghost">7 tasks, sorted by priority</span></span><p>Turn it transparent and photograph the box behind it.</p></div>
+<div><b>3</b><span class="panel"><span class="t" style="color:#3B2A2F;font-weight:700">5.11:1 Pass</span></span><p>Measure the ratio against those pixels. 4.5:1 for text, 3:1 for large text.</p></div>
+</div>
+<figcaption>How one line is checked.</figcaption>
+</figure>
+<figure class="gauge" aria-label="Contrast ratio of eight text and background pairs against the 3 to 1 and 4.5 to 1 pass lines. All pass; the tightest is 4.73 to 1.">
+<div class="gplot">
+<div class="gscale" aria-hidden="true"><span class="gline" style="left:20.00%"><em class="gl l3">3:1 large text</em></span><span class="gline" style="left:30.00%"><em class="gl l45">4.5:1 text</em></span></div>
+<div class="grow"><span class="gtile" style="background:#FFFBF2;color:#3B2A2F">Aa</span><div class="gbar"><i style="--v:12.67;background:#FFFBF2"></i><b style="--v:12.67">12.67:1</b></div></div>
+<div class="grow"><span class="gtile" style="background:#FFF5C2;color:#3B2A2F">Aa</span><div class="gbar"><i style="--v:12.24;background:#FFF5C2"></i><b style="--v:12.24">12.24:1</b></div></div>
+<div class="grow"><span class="gtile" style="background:#D4F6E5;color:#3B2A2F">Aa</span><div class="gbar"><i style="--v:11.65;background:#D4F6E5"></i><b style="--v:11.65">11.65:1</b></div></div>
+<div class="grow"><span class="gtile" style="background:#FFDFEC;color:#3B2A2F">Aa</span><div class="gbar"><i style="--v:10.92;background:#FFDFEC"></i><b style="--v:10.92">10.92:1</b></div></div>
+<div class="grow"><span class="gtile" style="background:#8EDED0;color:#3B2A2F">Aa</span><div class="gbar"><i style="--v:8.67;background:#8EDED0"></i><b style="--v:8.67">8.67:1</b></div></div>
+<div class="grow"><span class="gtile" style="background:#BCC4FB;color:#3B2A2F">Aa</span><div class="gbar"><i style="--v:7.99;background:#BCC4FB"></i><b style="--v:7.99">7.99:1</b></div></div>
+<div class="grow"><span class="gtile" style="background:#FDA99D;color:#7A1A10">Aa</span><div class="gbar"><i style="--v:5.73;background:#FDA99D"></i><b style="--v:5.73">5.73:1</b></div></div>
+<div class="grow tight"><span class="gtile" style="background:#C5B2F9;color:#5A4350">Aa</span><div class="gbar"><i style="--v:4.73;background:#C5B2F9"></i><b style="--v:4.73">4.73:1<span class=tt> (tightest)</span></b></div></div>
+</div>
+<figcaption>Eight of the pairs the script measured. Each bar is the measured ratio, filled with the background the script found under the text. A bar that stops short of a dashed line would fail. The thick outline marks the tightest pair: the secondary text on the Dusk background.</figcaption>
+</figure>
+<p>It opens the app in seven states: Home in both themes, pinned, the add and bell overlays, offline and error. It walks every piece of visible text, skips decoration and anything hidden under an overlay, turns the text transparent for a moment, photographs the box behind it, and measures the ratio between the text colour and the real pixels. Text needs 4.5:1, large text 3:1. It prints every fail with the element, the size and the ratio.</p>
+<p>Result: 58 lines checked across the seven states, 0 fails. The secondary text colour is the one that moves. It sat just under on the pink bottom of the first gradient, and again on the new backgrounds after the restyle, and each time the script said so before I did. The last fix went the other way: the Dusk top stop was lightened so the summary line passes there. Button edges against the background are under 3:1 and I left them, because every button also has a text label. The Figma file holds the same audit as a section: compact tiles, each text colour on its background with Pass or Fail and the ratio under it, no long rows.</p>
+<p>A second pass audited the file itself. It found 30 colours outside the variables, 5 texts at 11px and 33 texts with no style, most of them on the flow board's own scaffolding, a mock browser window and the captions under the app icon. About 140 strokes, fills and shadows were bound to variables and all 572 texts put on one of six styles. A crop audit turned clipping off on 1,082 inner frames that were cutting off the hard shadows, then 382 more, and now finds 0 cut-off children.</p>
+</section>
+<section class="wrap" id="results">
+<div class="tag">09 / Results</div>
+<h2>What I <mark>assumed</mark>, <em>and what held</em></h2>
+<ul class="verdicts">
+<li class="no"><span class="mark x" role="img" aria-label="Did not hold"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24"/><path d="M16 16l16 16M32 16L16 32" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></svg></span><p class="claim">Colour can carry five ages.</p><p class="found">Too many to remember. Three states, and the character does the work.</p></li>
+<li class="no"><span class="mark x" role="img" aria-label="Did not hold"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24"/><path d="M16 16l16 16M32 16L16 32" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></svg></span><p class="claim">Claude can finish the screens on its own.</p><p class="found">It drew the red link, one colour on three jobs and five age tints, then a second set of buttons in two colours, and called each one done. Knowing the craft is what caught them.</p></li>
+<li class="ok"><span class="mark ok" role="img" aria-label="Held"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24"/><path d="M14 25l7 7 13-15" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p class="claim">One job per colour holds.</p><p class="found">No element shares a colour with something it is not, and every pair passes.</p></li>
+</ul>
+<p>The app runs every day with real tickets. The rules held at this scale and they hold at product scale: red for warnings, one job per colour, and a palette small enough to say out loud.</p>
+</section>
+<section class="wrap" id="reflection">
+<div class="tag">10 / Reflection</div>
+<h2>What I'd <mark>change</mark>, <em>and the rule I took</em></h2>
+<p><strong>On working with Claude.</strong> It did the volume: the drawing, the binding, the restyling, the audits. I did the judgement: which colour means what, which element earns its place, which screenshot is wrong. That split only works if I know the craft well enough to see the mistake in a finished-looking screen. AI makes me faster. It does not make the check optional.</p>
+<p>I built fast and tidied after. The variables, the type scale and the audit came on the second day, after seven versions of Home, so until then every recheck meant hunting values by hand. Next time the colour scheme and the audit come before the second screen, even for one user. Nine mismatches sat there until I asked.</p>
+<p><strong>The rule I took:</strong> if I cannot say what a colour is for, it is not in the system. Nothing goes on a screen that is not in the scheme.</p>
+</section>
+</main>
+<footer class="wrap">Shin. <a href="../index.html">Home</a>, <a href="https://github.com/dofu">GitHub</a>. A UX designer walks into a bar, pushes the door marked pull, and blames the door.</footer>
+<script src="../reveal.js" defer></script>
+</body>
+</html>

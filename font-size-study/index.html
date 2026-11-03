@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Same study, two toolkits</title>
+<meta name="description" content="A font size study for older investors, run with AI and compared with how it would run without. Where I used AI, and what it saved.">
+<meta name="theme-color" content="#1B1B1B">
+<meta property="og:title" content="Same study, two toolkits">
+<meta property="og:description" content="A font size study run with AI, set against the same study without it. Where AI helped and where I kept it out.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dofu.github.io/font-size-study/">
+<meta property="og:image" content="https://dofu.github.io/font-size-study/assets/share-preview.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme:dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<link rel="stylesheet" href="../styles.css?v=5aa988ec">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site wrap"><a class="brand" href="../index.html" aria-label="Shin, home">Shin</a><button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="o" d="M3 7h18M3 12h18M3 17h18"/><path class="x" d="M5 5l14 14M19 5L5 19"/></svg></button><nav aria-label="Site" id="site-nav"><a href="../index.html">Home</a><div class="menu is-current"><button class="menu-btn" type="button" aria-expanded="false" aria-controls="articles-menu">Articles<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul id="articles-menu"><li><a href="../error-ramp/index.html">One red, ten stops</a></li><li><a href="../font-size-study/index.html" aria-current="page">Same study, two toolkits</a></li><li><a href="../p3-comp-lib/index.html">A design system you can prompt</a></li><li><a href="../ai-workflow/index.html">How I set up my AI workflow</a></li><li><a href="../task-tracker/index.html">A design system from scratch</a></li></ul></div><a href="https://github.com/dofu" class="ext">Return to GitHub</a></nav><button class="theme" type="button" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="moon" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg></button></header>
+<main id="main" tabindex="-1">
+<div class="wrap"><h1>Same <mark>study</mark>, <em>two toolkits<span>.</span></em></h1>
+<p class="lede">A usability study on font size for older investors. With AI I built my own research instrument in 1 to 3 days, which I could not have done alone. Here is each step, what the traditional version costs, and where I kept AI out on purpose.</p><ul class="tags" aria-label="Tags"><li>UX research</li><li>Usability testing</li><li>Accessibility</li><li>AI workflow</li></ul><ul class="stats">
+<li><span class="k">Synthesis</span><s class="was"><span class="sr">Before: </span>1 to 3 months</s><span class="n"><span class="sr">Now: </span>1 day</span><span class="t">to a first read of 18 sessions.</span></li>
+<li><span class="k">Research instrument</span><s class="was"><span class="sr">Before: </span>Not possible</s><span class="n"><span class="sr">Now: </span>1 to 3 days</span><span class="t">to build my own, which my old tools never allowed.</span></li>
+<li class="found"><span class="k">Finding</span><s class="was"><span class="sr">Assumed: </span>The largest font</s><span class="n"><span class="sr">Found: </span>17px</span><span class="t">median smallest legible size, from the 15 who finished the test.</span></li>
+</ul></div>
+<section class="wrap" id="problem">
+<div class="tag">01 / Problem statement</div>
+<h2><mark>Nobody</mark> knew what <em>big enough</em> meant</h2>
+<p>Font size has been a recurring concern from clients and from our own team, mostly for older users and users with eyesight difficulties.</p>
+<div class="with-note">
+<aside class="margin">Role: UX lead, ran the sessions. Year: 2026. Scope: one in-person study, older participants, their own phones, light and dark mode.</aside>
+<p>Earlier releases showed text that was too small, inconsistent across components, or that did not grow when a user chose a larger device font. The problem is sharpest on dense trading screens: Watchlist, Holdings, Orders and Positions. Bigger text wraps, truncates and crowds the columns. Scaling it back down to fit defeats the point of a larger setting.</p>
+</div>
+<p>How the problem unfolded:</p>
+<ol>
+<li><strong>The complaint.</strong> Text was too small for some older users.</li>
+<li><strong>The quick fix.</strong> Lock the font at 100% so the layout holds.</li>
+<li><strong>The cost.</strong> The layout survived, but older users who rely on larger text lost the option. We knew it at the time.</li>
+<li><strong>The guess.</strong> Proposals of 115% or 130%, with no one able to say whether either was enough.</li>
+<li><strong>The gap.</strong> Nobody knew how big older users actually needed text, so every size was a guess.</li>
+</ol>
+<p>The way out was to measure it. The study found that age alone does not justify the largest font for every older user. Participants put the comfortable minimum at 17px, and users were willing to accept wrapping and extra scrolling to keep text legible. That supports a default size and a separate larger setting, not one oversized experience for everyone.</p>
+</section>
+<section class="wrap" id="constraints">
+<div class="tag">02 / Constraints</div>
+<h2>One <mark>researcher</mark>, <em>one observer, one week</em></h2>
+<ol>
+<li><strong>Their phone, their setting.</strong> A lab device would hide the text size each person already lives with.</li>
+<li><strong>No research support.</strong> There was no budget for a transcription service, a panel tool or an analyst.</li>
+<li><strong>No developer for the test.</strong> I design screens, I do not build and host web apps. My testing was limited to InVision, prototypes, paper prototypes, SurveyMonkey and Google Forms.</li>
+<li><strong>Behaviour counts.</strong> People squint, hold the phone out at arm's length, or tap an answer they have not thought through. The data has to carry that.</li>
+<li><strong>The team has to use it.</strong> Findings that sit in a slide deck get quoted once and lost.</li>
+</ol>
+</section>
+<section class="wrap" id="method">
+<div class="tag">03 / Method</div>
+<h2>How the <mark>study</mark> <em>was run</em></h2>
+<p>A moderated, in-person usability study, run on each participant's own phone.</p>
+<dl class="method">
+<div><dt>Format</dt><dd>One person running the session and one observer. Video and audio recorded.</dd></div>
+<div><dt>Participants</dt><dd>18 older investors took part on their own phones. 15 completed the font test and the other 3 gave feedback only. Age group, eyesight, glasses on or off and the phone's text-size setting were noted for each.</dd></div>
+<div><dt>Task</dt><dd>Read a stock name aloud at each of eight sizes, 14px to 23px, in light and dark mode. Answer yes or no. The same sizes appeared on a mock Trade screen and a mock Watchlist.</dd></div>
+<div><dt>Controls</dt><dd>A new stock name at every size, all of similar length, so nothing could be memorised.</dd></div>
+<div><dt>Captured</dt><dd>A results table per person, observer notes on squinting, arm stretch and hesitation, short survey answers and open feedback.</dd></div>
+<div><dt>Analysis</dt><dd>Recordings transcribed on my laptop. Transcripts, survey results, feedback and notes pulled together with Claude. Quotes checked against the recording.</dd></div>
+</dl>
+</section>
+<section class="wrap" id="process">
+<div class="tag">04 / Process</div>
+<h2><mark>Five steps</mark>, <em>three of them with AI</em></h2>
+<p>Each step as it ran in my past studies, and as it ran this time.</p>
+<table class="stack">
+<thead><tr><th>Step</th><th>Before AI</th><th>Now, with AI</th><th>Used AI?</th></tr></thead>
+<tbody>
+<tr><td><strong>Research instrument</strong></td><td data-label="Before AI: ">Not possible. I was limited to prototypes, paper and survey tools.</td><td data-label="Now: ">A custom research instrument, written and hosted on my own GitHub in 1 to 3 days. 50 small changes over 5 days.</td><td data-label="Used AI: ">Yes</td></tr>
+<tr><td><strong>Sessions</strong></td><td data-label="Before AI: ">One person running the session and one taking notes, in person.</td><td data-label="Now: ">The same. 18 participants, 15 of them completing the font test, 1 day.</td><td data-label="Used AI: ">No</td></tr>
+<tr><td><strong>Observer notes</strong></td><td data-label="Before AI: ">Squinting, arm stretch, hesitation, written by hand.</td><td data-label="Now: ">The same. A person watching a person.</td><td data-label="Used AI: ">No</td></tr>
+<tr><td><strong>Synthesis</strong></td><td data-label="Before AI: ">Typing up the video, tallying the survey results, then sorting user feedback and observer notes into themes, all by hand. 1 to 3 months.</td><td data-label="Now: ">Transcripts in about 40 minutes on my laptop, audio kept on the machine. Then transcripts, surveys, feedback and notes pulled together: themes across all sessions the next day.</td><td data-label="Used AI: ">Yes</td></tr>
+<tr><td><strong>Sharing</strong></td><td data-label="Before AI: ">A Confluence page, or a slide in a meeting. 2 to 5 days to prepare.</td><td data-label="Now: ">A shared Claude project the team can ask questions of. 1 day.</td><td data-label="Used AI: ">Yes</td></tr>
+</tbody>
+</table>
+<figure class="track" aria-label="The five steps in order. Research instrument, synthesis and sharing used AI; sessions and observer notes did not." style="--n:5">
+<ul class="legend"><li class="me"><span class="dot"></span>Me</li><li class="ai"><span class="dot"></span>With AI</li></ul>
+<ol class="steps">
+<li class="ai"><span class="dot"></span><span class="t"><span class="lbl">Research instrument</span><span class="d"><span class="b">Before AI: Not possible</span><span class="n">Now: 1 to 3 days</span></span></span></li>
+<li class="me"><span class="dot"></span><span class="t"><span class="lbl">Sessions</span><span class="d"><span class="b">Before AI: 1 day</span><span class="n">Now: 1 day</span></span></span></li>
+<li class="me"><span class="dot"></span><span class="t"><span class="lbl">Observer notes</span><span class="d"><span class="b">Before AI: By hand</span><span class="n">Now: By hand</span></span></span></li>
+<li class="ai"><span class="dot"></span><span class="t"><span class="lbl">Synthesis</span><span class="d"><span class="b">Before AI: 1 to 3 months</span><span class="n">Now: 1 day</span></span></span></li>
+<li class="ai"><span class="dot"></span><span class="t"><span class="lbl">Sharing</span><span class="d"><span class="b">Before AI: 2 to 5 days</span><span class="n">Now: 1 day</span></span></span></li>
+</ol>
+<figcaption>Calendar time, not hands-on hours. Before AI is from my past studies; Now is this study. Same figures as the table and chart.</figcaption>
+</figure>
+<p>The biggest change is not the time. Prototypes, paper and survey forms show content in a fixed order, so a participant can learn the answer from an earlier screen. My research instrument shows a new stock name at every size, all of similar length, on the participant's own phone in light and dark mode. That tests the question directly and removes the bias a prototype carries.</p>
+<figure class="shots">
+<div><img src="assets/02-setup.webp" alt="Setup screen: participant name, age group, eyesight, glasses, phone OS and font size step" width="780" height="1328" loading="lazy" decoding="async"><span>Intake. Age, eyesight, glasses on or off, and the phone's own text size.</span></div>
+<div><img src="assets/03-reader-paragraph.webp" alt="Paragraph at 14 pixels with a Yes and No bar asking if the stock name can be read aloud" width="780" height="1328" loading="lazy" decoding="async"><span>The smallest size, 14px. One question: can you read the stock name aloud?</span></div>
+<div><img src="assets/04-reader-trade.webp" alt="Mock Trade screen in light mode at 14 pixels" width="780" height="1328" loading="lazy" decoding="async"><span>The same size on a mock Trade screen, in light mode.</span></div>
+<div><img src="assets/05-reader-watchlist-dark.webp" alt="Mock Watchlist screen in dark mode at 14 pixels" width="780" height="1328" loading="lazy" decoding="async"><span>And on a mock Watchlist, in dark mode.</span></div>
+<figcaption class="cap">Screens from the live research instrument, filled in with a dummy participant.</figcaption>
+</figure>
+<p>The biggest time saving is in synthesis: 1 to 3 months in past studies, and the first read of all sessions the next day.</p>
+<p>The last step is sharing. A Confluence page or a slide took me 2 to 5 days to prepare. This time I put the findings in a Claude project and shared it with my team in one day. It holds the observer notes, a project overview, a complaints file and the photographed results, and anyone on the team can ask it a question.</p>
+<figure class="proj"><img src="assets/fontsize.webp" alt="The shared Font size project in Claude, with a chat answering a request for a summary of the findings in a table of smallest legible sizes. Participant names are hidden." width="1646" height="950" loading="lazy" decoding="async"><figcaption class="cap">The shared project. A team member asks for a summary and gets one built from the notes, the transcripts and the result photos. Participant names are hidden.</figcaption></figure>
+</section>
+<section class="band soft" id="decisions"><div class="in">
+<div class="tag">05 / Decisions</div>
+<h2>What I <mark>handed over</mark>, <em>and what I kept</em></h2>
+<p><strong>Handed over.</strong> The research instrument, the transcripts, the first read of the themes, and a Claude project my team can ask questions of. These are the parts where speed matters and a mistake is cheap to catch.</p>
+<p><strong>Kept.</strong> Running the sessions, the observer's notes, and every call on what a participant's answer meant. A model cannot see someone lean back from the screen. The notes are also my check on answers a participant gave without being sure.</p>
+<p><strong>Gave up.</strong> Clean transcripts. The speaker labels are unreliable, so a line can land on the wrong person. Every quote has to be checked against the recording before it goes in a report.</p>
+</div></section>
+<section class="wrap" id="validation">
+<div class="tag">06 / Validation</div>
+<h2>How I <mark>check</mark> <em>what AI gave me</em></h2>
+<ol>
+<li><strong>Quotes against recordings.</strong> Nothing in a formal report until I have heard it.</li>
+<li><strong>Taps against notes.</strong> Where the observer wrote "squinted" or "unsure" and the participant tapped Yes, I treat that answer as lower confidence.</li>
+<li><strong>Sample size beside every number.</strong> A figure from a small group is directional, so it should travel with the count of people behind it.</li>
+</ol>
+</section>
+<section class="wrap" id="results">
+<div class="tag">07 / Results</div>
+<h2>What I <mark>assumed</mark>, <em>and what held</em></h2>
+<ul class="verdicts">
+<li class="no"><span class="mark x" role="img" aria-label="Did not hold"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24"/><path d="M16 16l16 16M32 16L16 32" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></svg></span><p class="claim">Older users need the largest font.</p><p class="found">Most read well below the maximum. The median was 17px.</p></li>
+<li class="no"><span class="mark x" role="img" aria-label="Did not hold"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24"/><path d="M16 16l16 16M32 16L16 32" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></svg></span><p class="claim">Age tells us who needs bigger text.</p><p class="found">Age only showed in the tail. Everyone under 65 read at 17px or below.</p></li>
+<li class="no"><span class="mark x" role="img" aria-label="Did not hold"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24"/><path d="M16 16l16 16M32 16L16 32" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></svg></span><p class="claim">Eyesight type sets the size.</p><p class="found">A weak predictor. Glasses on, and visible strain, said more.</p></li>
+<li class="no"><span class="mark x" role="img" aria-label="Did not hold"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24"/><path d="M16 16l16 16M32 16L16 32" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></svg></span><p class="claim">The phone's own text-size setting tells us the size.</p><p class="found">Also weak. Two people on the largest setting needed 15px and 21px.</p></li>
+<li class="ok"><span class="mark t" role="img" aria-label="Held"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24"/><path d="M13 25l8 8 14-17" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p class="claim">Some people need a larger option.</p><p class="found">A minority do. Best as an opt-in setting.</p></li>
+<li class="no"><span class="mark x" role="img" aria-label="Did not hold"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24"/><path d="M16 16l16 16M32 16L16 32" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></svg></span><p class="claim">Readers will not accept wrapping and extra scrolling.</p><p class="found">They accept both to keep text legible.</p></li>
+</ul>
+<p class="cap">From a small group, so read the sizes as directional, not as a rule.</p>
+</section>
+<section class="wrap" id="reflection">
+<div class="tag">08 / Reflection</div>
+<h2>What I'd <mark>change</mark>, <em>and the rule I took</em></h2>
+<p>I would give every recording, note sheet, survey row and result photo the same participant ID on day one, and keep names out of anything the team can query. With four sources per session, the link between them decides whether a model blends two people into one.</p>
+<p>The rule I took from it: use AI where the work is typing, sorting and searching, and keep people where the work is watching and judging. The traditional study wastes time on the first kind. It cannot do without the second.</p>
+</section>
+</main>
+<script src="../reveal.js" defer></script>
+<footer class="wrap">Shin. <a href="../index.html">Home</a>, <a href="https://github.com/dofu">GitHub</a>. A UX designer walks into a bar, pushes the door marked pull, and blames the door.</footer>
+</body>
+</html>

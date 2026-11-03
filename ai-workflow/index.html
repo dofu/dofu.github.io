@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How I set up my AI workflow</title>
+<meta name="description" content="Five steps to set up Claude for UX work so it builds for your team and users: real content first, then guidelines, folders, notes and a separate check.">
+<meta name="theme-color" content="#1B1B1B">
+<meta property="og:title" content="How I set up my AI workflow">
+<meta property="og:description" content="Five steps to set up Claude for UX work so it builds for your team and users: real content first, then guidelines, folders, notes and a separate check.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dofu.github.io/ai-workflow/">
+<meta property="og:image" content="https://dofu.github.io/ai-workflow/assets/share-preview.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme:dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<link rel="stylesheet" href="../styles.css?v=5aa988ec">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site wrap"><a class="brand" href="../index.html" aria-label="Shin, home">Shin</a><button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="o" d="M3 7h18M3 12h18M3 17h18"/><path class="x" d="M5 5l14 14M19 5L5 19"/></svg></button><nav aria-label="Site" id="site-nav"><a href="../index.html">Home</a><div class="menu is-current"><button class="menu-btn" type="button" aria-expanded="false" aria-controls="articles-menu">Articles<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul id="articles-menu"><li><a href="../error-ramp/index.html">One red, ten stops</a></li><li><a href="../font-size-study/index.html">Same study, two toolkits</a></li><li><a href="../p3-comp-lib/index.html">A design system you can prompt</a></li><li><a href="../ai-workflow/index.html" aria-current="page">How I set up my AI workflow</a></li><li><a href="../task-tracker/index.html">A design system from scratch</a></li></ul></div><a href="https://github.com/dofu" class="ext">Return to GitHub</a></nav><button class="theme" type="button" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="moon" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg></button></header>
+<main id="main" tabindex="-1">
+<div class="wrap"><h1>How I <mark>set up</mark> my <em>AI workflow<span>.</span></em></h1>
+<p class="lede">How I set up Claude for UX work so it builds for my product team, stakeholders, developers and users, not for an average product. Five steps you can copy, starting with the content.</p>
+<ul class="tags" aria-label="Tags"><li>AI workflow</li><li>Context engineering</li><li>MCP</li><li>Governance</li></ul>
+<ul class="stats">
+<li><span class="k">Setup</span><s class="was"><span class="sr">Before: </span>Said again each time</s><span class="n"><span class="sr">Now: </span>5 steps</span><span class="t">Content, guidelines, folders, notes and a check.</span></li>
+<li><span class="k">Review</span><s class="was"><span class="sr">Before: </span>A better prompt</s><span class="n"><span class="sr">Now: </span>1 check</span><span class="t">Run apart from the draft, by a script or a second read.</span></li>
+<li class="found"><span class="k">Finding</span><s class="was"><span class="sr">Assumed: </span>A rule said once holds</s><span class="n"><span class="sr">Found: </span>It drifts</span><span class="t">In a content project, a rule given once drifted back to old habits.</span></li>
+</ul></div>
+<section class="wrap" id="problem">
+<div class="tag">01 / Problem statement</div>
+<h2><mark>Generic</mark> is <em>the default</em></h2>
+<p>Ask Claude for a screen or a line of copy for a trading app and it fills every gap with the average of what it has seen: stock buttons, stock wording, stock flows. Read the result without the brand name. If it still sounds right for any company in the category, that is the tell.</p>
+<p>I want designs that fit my product team, my stakeholders, my developers and what users told us. The ingredient that decides that is content. Claude can only use what it has been given, and it forgets between sessions. Rules said once drift back, and a new session starts blank. The way out was to write the content and the guidelines down, in places it reads on its own.</p>
+</section>
+<section class="wrap" id="setup">
+<div class="tag">02 / Setup</div>
+<h2>What <mark>Claude</mark> <em>is connected to</em></h2>
+<p class="lead">Two zones. The brain is everything Claude can draw on. The workboard is where it does the work.</p>
+<figure class="map">
+<div class="g in"><h3>Brain</h3><p class="sub">Places Claude gathers data from</p><ul class="mind">
+<li><strong>Your content</strong><span>User feedback, stakeholder rules, developer limits</span></li>
+<li><strong>Guidelines file</strong><span>How it should write and work</span></li>
+<li><strong>Memory notes</strong><span>Lessons, one fact each</span></li>
+<li><strong>Skills</strong><span>Add-on instructions you install, such as Caveman</span></li>
+<li><strong>Confluence</strong><span>Reads requirements and documents</span></li>
+<li><strong>Slack / Teams</strong><span>Reads the threads where decisions happen</span></li>
+<li><strong>Email</strong><span>Reads approvals and feedback</span></li>
+<li><strong>Mobbin</strong><span>Finds reference screens</span></li>
+<li><strong>The internet</strong><span>Searches and reads web pages</span></li>
+</ul></div>
+<div class="hub">Claude</div>
+<div class="g out"><h3>Workboard</h3><p class="sub">Where it does the work</p><ul class="work">
+<li><strong>Figma</strong><span>Reads and edits designs</span></li>
+<li><strong>Jira</strong><span>Reads and updates tickets</span></li>
+<li><strong>Git</strong><span>Reads history, commits and pushes changes</span></li>
+</ul></div>
+<figcaption>Examples, not a full list. Claude draws on the brain and does its work on the workboard.</figcaption>
+</figure>
+</section>
+<section class="wrap" id="process">
+<div class="tag">03 / Process</div>
+<h2><mark>Five steps</mark> <em>to copy</em></h2>
+<p class="lead">5 steps, in the order I would do them. Each one works without the next.</p>
+<figure class="track numbered" aria-label="Five steps with what each one adds: 3 connectors, 1 guidelines file, 4 folders, 1 note per break, 1 check." style="--n:5">
+<ol class="steps">
+<li class="me"><span class="dot">1</span><span class="t"><span class="lbl">Bring your real content in</span><span class="d">3 connectors</span></span></li>
+<li class="me"><span class="dot">2</span><span class="t"><span class="lbl">Write the guidelines down once</span><span class="d">1 file Claude reads</span></span></li>
+<li class="me"><span class="dot">3</span><span class="t"><span class="lbl">Give every project the same folders</span><span class="d">4 folders</span></span></li>
+<li class="me"><span class="dot">4</span><span class="t"><span class="lbl">Save a lesson when something breaks</span><span class="d">1 note per break</span></span></li>
+<li class="me"><span class="dot">5</span><span class="t"><span class="lbl">Add 1 check, in a separate pass</span><span class="d">1 check</span></span></li>
+</ol>
+<figcaption>Each step works without the next. The count is what I started with.</figcaption>
+</figure>
+<p><strong>Step 1. Bring your real content in.</strong> This is what keeps the result from being generic. Gather four things: user feedback or research findings, what your stakeholders insist on, your developers' real limits, and your design system guidelines. Save them as files in the project, or connect the app where they live. Mine are 3 connectors: Figma, Atlassian (Jira and Confluence) and Mobbin, through MCP. I also give it a browser it can drive so it can look at the screen it built and not only read the code. Add the next app once the first has earned its place. Learning ten tools at once ships nothing.</p>
+<p><strong>Step 2. Write the guidelines down once.</strong> Put them in the file Claude reads at the start of every session (CLAUDE.md in Claude Code, project instructions in Claude on the web). Start with three or four lines, then add one each time it breaks a rule. Mine began with this, from my workshop:</p>
+<p class="prompt">No em dashes, en dashes or arrows. Use commas, full stops or semicolons.<br>Tone: grounded, direct, conversational. Not cheerful or customer-service-like.<br>If a prompt is too vague or missing detail, say so and ask. Do not guess or invent.</p>
+<p><strong>Step 3. Give every project the same folders.</strong> I use 4: source for what I was sent, such as feedback and requirements, work for my thinking, output for what leaves the project, tools for scripts. Say the layout once in the guidelines file. Your content then has a fixed home, and Claude knows where a file goes.</p>
+<p><strong>Step 4. Save a lesson the first time something breaks.</strong> One fact, why it matters and what to do next time. I merge pull requests while Claude works. It once force-pushed without checking the remote, and two of my merges were erased. Now there is a note: fetch and compare before any force-push.</p>
+<p><strong>Step 5. Add 1 check, in a separate pass.</strong> A better prompt is not a check, and "sounds plausible" is not a source of truth. Check the result against your content. In a content project, the first draft left out a required legal notice, and a dedicated review pass caught it. For this site, a script checks forbidden characters, image formats, text size and sideways scrolling. Keep each check narrow: "check every shelf for dust" finds more than "tidy the room".</p>
+</section>
+<section class="wrap" id="reflection">
+<div class="tag">04 / Reflection</div>
+<h2>What I'd <mark>change</mark>, <em>and the rule I took</em></h2>
+<p>I have not measured whether the setup cuts the drift. What I have is the workshop example and the fact that my guidelines now outlast a session. A fair test would run one task with and without the guidelines file and count the broken rules.</p>
+<p><strong>The rule I took:</strong> if I have said it twice, it goes in a file.</p>
+</section>
+</main>
+<footer class="wrap">Shin. <a href="../index.html">Home</a>, <a href="https://github.com/dofu">GitHub</a>. A UX designer walks into a bar, pushes the door marked pull, and blames the door.</footer>
+<script src="../reveal.js" defer></script>
+</body>
+</html>

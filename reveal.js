@@ -1,4 +1,6 @@
-/* Site navigation and theme switch: the burger menu on phones, the Articles dropdown on desktop, and the dark theme button. */
+/* Adds .in-view the first time an element scrolls into view:
+   figure.chart (bars grow), figure.shots (screens flip in turn), and h1, h2
+   (words rise one by one; the red full stop in an h1 pops in last). */
 (function () {
   // Theme switch: the saved choice (or the system setting) is applied by the inline script in <head>; this handles the button.
   var root = document.documentElement, sw = document.querySelector(".theme"), tc = document.querySelector('meta[name="theme-color"]');
@@ -15,6 +17,51 @@
     try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
     paint();
   });
+  function splitWords(root) {
+    var n = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(function (tok) {
+            if (!tok) return;
+            if (/^\s+$/.test(tok)) { frag.appendChild(document.createTextNode(tok)); return; }
+            var w = document.createElement("span"), wi = document.createElement("span");
+            w.className = "w"; wi.className = "wi"; wi.textContent = tok;
+            wi.style.setProperty("--i", n++);
+            w.setAttribute("aria-hidden", "true");
+            w.appendChild(wi); frag.appendChild(w);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1) {
+          if (root.tagName === "H1" && child.tagName === "SPAN" && child.parentNode.tagName === "EM") {
+            child.classList.add("dot"); child.setAttribute("aria-hidden", "true");
+          } else walk(child);
+        }
+      });
+    })(root);
+    root.style.setProperty("--n", n);
+  }
+
+  var heads = document.querySelectorAll("h1, h2");
+  heads.forEach(function (h) {
+    h.setAttribute("aria-label", h.textContent.replace(/\s+/g, " ").trim());
+    splitWords(h);
+    h.classList.add("split");
+  });
+
+  var items = document.querySelectorAll("figure.chart, figure.shots, ul.verdicts, ul.stats, ol.flow, figure.map, div.spanbar, h1, h2");
+  if (!("IntersectionObserver" in window)) {
+    items.forEach(function (el) { el.classList.add("in-view"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
+  items.forEach(function (el) { io.observe(el); });
+
   var burger = document.querySelector(".burger");
   if (burger) {
     var hdr = burger.closest("header");
