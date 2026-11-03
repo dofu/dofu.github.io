@@ -3,118 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>One red, ten stops</title>
-<meta name="description" content="A design system colour ramp, before and after: six reds became ten tested stops.">
-<meta name="theme-color" content="#1B1B1B">
-<meta property="og:title" content="One red, ten stops">
-<meta property="og:description" content="A design system colour ramp, before and after. Each stop read against white and #1B1B1B.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://dofu.github.io/error-ramp/">
-<meta property="og:image" content="https://dofu.github.io/error-ramp/assets/share-preview.png">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme:dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
-<link rel="stylesheet" href="../styles.css?v=ae605d25">
+<title>Moved: Optimising a design system colour swatch</title>
+<meta http-equiv="refresh" content="0; url=../colour-swatch/">
+<link rel="canonical" href="https://dofu.github.io/colour-swatch/">
+<meta name="robots" content="noindex">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site wrap"><a class="brand" href="../index.html" aria-label="Shin, home">Shin</a><button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="o" d="M3 7h18M3 12h18M3 17h18"/><path class="x" d="M5 5l14 14M19 5L5 19"/></svg></button><nav aria-label="Site" id="site-nav"><a href="../index.html">Home</a><div class="menu is-current"><button class="menu-btn" type="button" aria-expanded="false" aria-controls="articles-menu">Articles<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul id="articles-menu"><li><a href="../error-ramp/index.html" aria-current="page">One red, ten stops</a></li></ul></div><a href="https://github.com/dofu" class="ext">Return to GitHub</a></nav><button class="theme" type="button" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="moon" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg></button></header>
-<main id="main" tabindex="-1">
-<div class="wrap"><h1>One <mark>red</mark>, <em>ten stops<span>.</span></em></h1>
-<p class="lede">A design system colour ramp, before and after. Six reds that all started at the fill end became ten stops, each read against the two on-colours the app uses: white and #1B1B1B.</p></div>
-<section class="wrap" id="problem">
-<div class="tag">01 / Problem statement</div>
-<h2>A palette with badges is <mark>not</mark> a <em>ramp</em></h2>
-<p>I lead the design system for a trading app. Investors read these colours every day. Designers and developers build from them.</p>
-<div class="with-note">
-<aside class="margin">Role: design system lead. Year: 2026. Scope: colour primitives, seven ramps. Error carries the story here.</aside>
-<p>Version 2.0 put contrast badges on every swatch and marked no answer. A designer picking a red for a button, a banner or a dark screen had to <mark>guess which stop was safe</mark>. The ramp also stopped at six stops that all started at the fill end.</p>
-</div>
-<div class="with-note lead-gap">
-<aside class="margin">What people said about v2.0. Paraphrased, names removed.</aside>
-<div class="chat" role="list" aria-label="Feedback on v2.0">
-<div class="msg" role="listitem"><div class="av" aria-hidden="true">😕</div><div class="bub">Surface 2 is too light. It jumps about 50% from Surface 1, and the containers look washed out.</div></div>
-<div class="msg" role="listitem"><div class="av" aria-hidden="true">😬</div><div class="bub">One red and one green fail on the secondary surface, and the negative button's label is hard to see.</div></div>
-<div class="msg" role="listitem"><div class="av" aria-hidden="true">🤔</div><div class="bub">Muted red and green look softer, but traders no longer read them instantly.</div></div>
-<div class="msg" role="listitem"><div class="av" aria-hidden="true">😤</div><div class="bub">We need more shades per colour for contrast and hierarchy.</div></div>
-<div class="msg" role="listitem"><div class="av" aria-hidden="true">😵</div><div class="bub">Colours are missing from the mapping, tokens share one hex, and some screens hard-code colours.</div></div>
-<div class="msg" role="listitem"><div class="av" aria-hidden="true">😩</div><div class="bub">Switching between dark and light needs extra variables.</div></div>
-</div>
-</div>
-</section>
-<section class="wrap" id="constraints">
-<div class="tag">02 / Constraints</div>
-<h2>Four <mark>rules</mark> the ramp <em>had to meet</em></h2>
-<ol>
-<li><strong>Two pages.</strong> Every colour has to read on white and on #1B1B1B.</li>
-<li><strong>One fill for both modes.</strong> A fill with a white label needs 4.5:1 on the label and 3:1 against each page. That pins its relative luminance to 0.133 to 0.183.</li>
-<li><strong>Brand colours are fixed.</strong> Blue #0043CE and orange #F78F20 were already set, so Error had to fit around them.</li>
-<li><strong>Steps you can tell apart.</strong> Under 1.2:1 between neighbours and two stops read as one.</li>
-</ol>
-</section>
-<section class="wrap" id="audit">
-<div class="tag">03 / Audit</div>
-<h2><mark>Six stops</mark> <em>don't reach</em></h2>
-<p>Top row: v2.0 Red. Bottom row: v2.1 Error, at the same width, so the missing stops show as empty space. v2.0 opens at #E96E6E, which is 3.03 on white, a fill. v2.1 opens at a tint that holds dark text at 14.9.</p>
-<img src="assets/error-before-after-v2.png" alt="v2.0 Red row of six swatches stacked above the v2.1 Error row of ten swatches">
-<p>A ramp is a stepper. Lightness per stop, v2.0 against v2.1:</p>
-<img src="assets/error-stepper.png" alt="Stepper chart of lightness per stop for the Error ramp, v2.0 against v2.1">
-<table>
-<tr><th></th><th>v2.0 Red</th><th>v2.1 Error</th></tr>
-<tr><td>Stops</td><td>6</td><td>10</td></tr>
-<tr><td>Lightness range</td><td>0.31</td><td>0.61</td></tr>
-<tr><td>Hue</td><td>drifts 22 to 27</td><td>held at 30</td></tr>
-<tr><td>Step between stops</td><td>1.17 to 1.44</td><td>1.18 to 1.45</td></tr>
-<tr><td>Passes both pages</td><td>300 and 400, unmarked</td><td>500, marked</td></tr>
-</table>
-<div class="with-note"><aside class="margin">Error 500 reads 4.75 on white and 3.62 on #1B1B1B. The old 300 passed too. It is the new 500, where the semantic token points.</aside></div>
-</section>
-<section class="band" id="decisions"><div class="in">
-<div class="tag">04 / Decisions</div>
-<h2>What I <mark>chose</mark>, and <em>what I gave up</em></h2>
-<img src="assets/trade-before-after-v2.png" alt="The Trade screen in dark mode, before and after v2.1, with notes on what changed">
-<p class="cap">The same trade ticket, before and after v2.1. Before: the current app colours, applied screen by screen. After: the v2.1 palette, applied by rule.</p>
-<ol>
-<li><strong>Brighter fill over safer contrast.</strong> I solved two reds for the one-fill rule. One traded a little page contrast for a brighter, more brand-like colour. The other did the reverse. I took the brighter one.</li>
-<li><strong>Cut the lookalikes.</strong> Four reds sat 1.06 to 1.12:1 apart and looked the same. I kept one, dropped two as duplicates, and derived two fillers on the ramp's own hue and chroma.</li>
-<li><strong>Add a surface tint.</strong> v2.0 had no stop light enough to sit behind text. v2.1 starts at one.</li>
-<li><strong>Hold the hue.</strong> Dark reds stay red. They don't drift toward brown, which is what happened to the amber ramp.</li>
-<li><strong>Script proposes, I decide.</strong> Values are derived in OKLCH by script, judged by eye, and placed on the board by hand. <mark>The script never shipped a stop. I did.</mark></li>
-</ol>
-<p>Neutrals step up by elevation. The brand fill sits only on the main action. Status colour appears only where it means something. Every text and icon colour passes WCAG on dark and on light. Light mode comes from the same tokens, so there is no second palette to maintain.</p>
-<p>For Error, one fill, stop 500, serves both modes with a white label. The 46 colours are in code as tokens.</p>
-</div></section>
-<section class="wrap" id="validation">
-<div class="tag">05 / Validation</div>
-<h2>Same rules, <mark>five</mark> real screens, <em>dark mode</em></h2>
-<p>I applied the v2.1 palette by rule to five screens in both modes, ten in all. Dark mode is shown here, before on the left and after on the right. The Trade screen is under Decisions.</p>
-<img src="assets/validation-dark.png" alt="Dark mode before and after pairs for Home, Me, Order details and Market data agreement">
-<div class="with-note">
-<aside class="margin">Not done yet: user testing. These screens show the rules hold up on real layouts. They don't show investors find them clearer. I'm still testing which changes work.</aside>
-<ul>
-<li>Contrast recomputed from the hex for every Error stop. My Foundations file records every text and icon colour on these screens as passing WCAG, on dark and on light.</li>
-<li>Greys step up by elevation. A card on a card of the same colour now moves one level.</li>
-<li>Status colour appears only where it carries meaning. Orange stays on the main action.</li>
-</ul>
-</div>
-</section>
-<section class="wrap" id="reflection">
-<div class="tag">06 / Reflection</div>
-<h2>What I'd <mark>fix</mark>, and a check <em>for your own ramp</em></h2>
-<p>Two things on my own board don't meet my own rules. Error 600 carries a trophy with a 2.92 reading on #1B1B1B, which fails the 3:1 rule, so only 500 should have it. And the step from 50 to 100 is 1.18, a hair under my 1.2 line.</p>
-<p>Five questions I'd now ask of any ramp:</p>
-<ol>
-<li><strong>Do two stops look the same?</strong> The first cut of v2.1 had four reds 1.06 to 1.12:1 apart. The board now steps 1.18 to 1.45.</li>
-<li><strong>Is the lightest stop a surface or a fill?</strong> v2.0 opens at a fill. v2.1 opens at a 50 that sits behind text.</li>
-<li><strong>Does one stop take a white label in both modes?</strong> That needs 4.5 on the label and 3 against white and against the dark page. Mark it.</li>
-<li><strong>Can you read contrast from the step numbers?</strong> The US Web Design System and Material Design both fix a gap between step numbers, so any two steps that far apart meet a contrast level: 40 apart for 3:1, 50 for 4.5:1, 70 for 7:1. A designer picks a pair by number and doesn't need a checker. Material treats it as a rule of thumb, so a real ratio is still worth checking.</li>
-<li><strong>Do the red and the green stay apart without hue?</strong> Many colour-blind users can't tell a red from a green by hue alone. Giving the two different lightness, and adding a sign or icon, keeps profit and loss readable. WCAG asks the same: colour can't be the only signal.</li>
-</ol>
-<p>The old row had the colour. Nobody had asked the questions.</p>
-</section>
-</main>
-<footer class="wrap">Shin. Built as one static page.</footer>
-<script src="../reveal.js" defer></script>
+<p>This article moved to <a href="../colour-swatch/">Optimising a design system colour swatch</a>.</p>
 </body>
 </html>
