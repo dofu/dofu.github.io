@@ -61,3 +61,77 @@ header nav a:hover{text-decoration:underline}
 .skip:focus{left:8px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* site navigation: Home, Articles dropdown, Return to GitHub; a burger menu on phones */
+:root{--fs-label:18px;--fs-body:21px;--band-soft:#ECEAE4;--header-h:90px}
+header nav{display:flex;gap:28px;font-size:var(--fs-label);margin-left:auto}
+header nav a{text-decoration:none}
+header nav a:hover{text-decoration:underline}
+.burger{display:none}
+header nav a[aria-current]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+header nav .menu{position:relative}
+header nav .menu-btn{display:inline-flex;align-items:center;gap:6px;margin:0;padding:0;border:0;background:none;font:inherit;color:inherit;line-height:inherit;cursor:pointer}
+header nav .menu-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+header nav .menu.open .menu-btn svg{transform:rotate(180deg)}
+header nav .menu-btn:hover,header nav .menu.is-current .menu-btn{text-decoration:underline;text-underline-offset:6px}
+header nav .menu.is-current .menu-btn{text-decoration-thickness:2px}
+header nav .menu ul{display:none;position:absolute;top:100%;right:-12px;z-index:20;min-width:320px;margin:10px 0 0;padding:8px;list-style:none;background:var(--cream);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+header nav .menu ul::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+header nav .menu.open ul,html:not(.js) header nav .menu ul{display:block}
+@media (hover:hover){header nav .menu:hover ul{display:block}}
+header nav .menu li{margin:0;padding:0}
+header nav .menu li a{display:block;padding:10px 12px;border-radius:8px;white-space:nowrap}
+header nav .menu li a:hover{background:var(--band-soft);text-decoration:none}
+@media (max-width:860px){
+  header.site{height:auto;flex-wrap:wrap;gap:6px 24px;padding:18px 0}
+  header nav{margin-left:0;flex-wrap:wrap;gap:4px 20px;width:100%}
+  .js .burger{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-8px -10px -8px auto;padding:0;border:0;background:none;color:var(--ink);cursor:pointer}
+  .burger svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+  .burger .x,.burger[aria-expanded="true"] .o{display:none}
+  .js header nav{display:none}
+  .js header.menu-open nav{display:flex;flex-direction:column;gap:0;margin-top:10px;border-top:1px solid var(--line)}
+  .js header.menu-open nav a{padding:14px 0;border-bottom:1px solid var(--line);font-size:var(--fs-body)}
+  .js header.menu-open nav .menu{width:100%}
+  .js header.menu-open nav .menu-btn{display:flex;justify-content:space-between;width:100%;padding:14px 0;border-bottom:1px solid var(--line);font-size:var(--fs-body)}
+  .js header.menu-open nav .menu-btn svg{width:18px;height:18px}
+  .js header.menu-open nav .menu ul{position:static;min-width:0;margin:0;padding:0 0 0 18px;border:0;border-radius:0;box-shadow:none;background:none}
+  .js header.menu-open nav .menu ul::before{display:none}
+  .js header.menu-open nav .menu li a{border-radius:0;white-space:normal}
+  .js header.menu-open nav .menu li a:hover{background:none;text-decoration:underline}
+}
+
+/* dark theme in the style of Shin's reference slide (2026-11-03). Applied by <html data-theme="dark">, set from the header switch or the visitor's system setting (inline script in <head>, switch in reveal.js).
+   Dark slate page, light-blue ink, neon lime highlighter (mark) and hand-drawn underline (h1 em, h2 em),
+   a lime asterisk above the title and lime section pills. */
+html[data-theme="dark"]{--cream:#171615;--ink:#F1EEE6;--ink-soft:#D6D2C8;--muted:#A19D93;--line:#2E2C29;--tag-line:#4A4741;
+--band:#211F1D;--band-soft:#211F1D;--panel:#211F1D;--bubble:#272522;--bubble-ink:#EAE6DC;--ok-soft:#1F3A2B;--no-soft:#3D2522;--bar-before-tint:#1F3350;--bar-now-tint:#43291F;
+--accent:#FFDD33;--note:#FFDD33;--hl:#FFDD33;--on-hl:#171615;color-scheme:dark}
+html[data-theme="dark"] h1,html[data-theme="dark"] h2{font-weight:500;letter-spacing:-.045em}
+html[data-theme="dark"] h1::before{content:"*";display:block;margin:0 0 -.12em;font-size:.72em;line-height:1;font-weight:700;color:var(--hl)}
+html[data-theme="dark"] h1 em,html[data-theme="dark"] h2 em{font-family:var(--font-sans);font-style:normal;font-weight:500;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'><path d='M1 7 C 25 2, 55 9, 99 3' fill='none' stroke='%23FFDD33' stroke-width='2.6' stroke-linecap='round'/></svg>") no-repeat 0 100%/100% .2em;padding-bottom:.14em}
+html[data-theme="dark"] mark{background:var(--hl);color:var(--on-hl);padding:0 .14em;margin:0 -.04em;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+html[data-theme="dark"] .tag{display:inline-block;justify-self:start;width:fit-content;padding:3px 16px;border-radius:999px;background:var(--hl);color:var(--on-hl);font-weight:600}
+html[data-theme="dark"] strong{color:var(--hl);font-weight:600}
+html[data-theme="dark"] .lede{color:var(--ink-soft)}
+html[data-theme="dark"] section.band{background:var(--band);color:var(--ink)}
+html[data-theme="dark"] section.band a{color:var(--ink)}
+html[data-theme="dark"] .margin{border-top-color:var(--tag-line)}
+html[data-theme="dark"] th{border-bottom-color:var(--tag-line)}
+html[data-theme="dark"] ::selection{background:var(--hl);color:var(--on-hl)}
+html[data-theme="dark"] .skip{background:var(--hl);color:var(--on-hl)}
+/* highlighter text is plain in the light theme */
+mark{background:none;color:inherit}
+/* theme switch in the header: moon in light, sun in dark; shown only when scripts run */
+.theme{display:none}
+.js .theme{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-8px -10px -8px 0;padding:0;border:0;background:none;color:var(--ink);cursor:pointer;border-radius:50%}
+.theme svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.theme .sun,html[data-theme="dark"] .theme .moon{display:none}
+html[data-theme="dark"] .theme .sun{display:inline}
+.theme:hover{background:var(--band-soft)}
+@media (max-width:860px){.js .theme{order:1;margin:-8px 0 -8px auto}.js .burger{order:2;margin:-8px -10px -8px 0}header nav{order:3}}
+/* dark theme: this site's own components */
+html[data-theme="dark"] .av{background:var(--band-soft)}
+html[data-theme="dark"] .bub{background:var(--bubble);color:var(--bubble-ink)}
+html[data-theme="dark"] section.band .in>*{color:inherit}
+a.brand{text-decoration:none}
