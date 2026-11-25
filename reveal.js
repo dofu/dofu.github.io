@@ -50,7 +50,233 @@
     h.classList.add("split");
   });
 
-  var items = document.querySelectorAll("figure.chart, figure.shots, ul.verdicts, ul.stats, ol.flow, figure.map, div.spanbar, h1, h2");
+  // the second group, with a small square travelling along every line. Lines are measured from the layout, so
+  // they follow the side-by-side and the stacked arrangement.
+  function wireMap(map) {
+    var NS = "http://www.w3.org/2000/svg", CYCLE = 2600;
+    var gIn = map.querySelector(".g.in"), hub = map.querySelector(".hub"), gOut = map.querySelector(".g.out");
+    if (!gIn || !hub || !gOut || !map.animate) return;
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("class", "wires"); svg.setAttribute("aria-hidden", "true");
+    map.insertBefore(svg, map.firstChild);
+    map.classList.add("wired");
+    var still = window.matchMedia("(prefers-reduced-motion:reduce)");
+    var dots = [], running = false, first = true;
+    var box = function (el) {
+      var x = 0, y = 0, n = el;
+      while (n && n !== map) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+      return { l: x, t: y, r: x + el.offsetWidth, b: y + el.offsetHeight, cx: x + el.offsetWidth / 2, cy: y + el.offsetHeight / 2 };
+    };
+    var centres = function (group, key) {
+      var seen = [];
+      group.querySelectorAll("li").forEach(function (li) {
+        var v = Math.round(box(li)[key]);
+        if (!seen.some(function (s) { return Math.abs(s - v) < 4; })) seen.push(v);
+      });
+      return seen.sort(function (a, b) { return a - b; });
+    };
+    function draw() {
+      var a = box(gIn), h = box(hub), b = box(gOut), side = h.l >= a.r, lines = [];
+      if (side) {
+        var s1 = (h.l - a.r) * 0.3, s2 = (b.l - h.r) * 0.3;
+        centres(gIn, "cy").forEach(function (y) { lines.push({ d: "M" + a.r + " " + y + "H" + (a.r + s1) + "L" + h.l + " " + h.cy, out: false }); });
+        centres(gOut, "cy").forEach(function (y) { lines.push({ d: "M" + h.r + " " + h.cy + "L" + (b.l - s2) + " " + y + "H" + b.l, out: true }); });
+      } else {
+        var v1 = (h.t - a.b) * 0.3, v2 = (b.t - h.b) * 0.3;
+        centres(gIn, "cx").forEach(function (x) { lines.push({ d: "M" + x + " " + a.b + "V" + (a.b + v1) + "L" + h.cx + " " + h.t, out: false }); });
+        centres(gOut, "cx").forEach(function (x) { lines.push({ d: "M" + h.cx + " " + h.b + "L" + x + " " + (b.t - v2) + "V" + b.t, out: true }); });
+      }
+      dots.forEach(function (d) { d.remove(); });
+      dots = [];
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      var nIn = 0, nOut = 0;
+      lines.forEach(function (ln) {
+        var p = document.createElementNS(NS, "path");
+        p.setAttribute("d", ln.d); p.setAttribute("pathLength", "1");
+        if (ln.out) p.setAttribute("class", "out");
+        svg.appendChild(p);
+        if (still.matches) return;
+        var dot = document.createElement("i");
+        dot.className = "wire-dot";
+        dot.style.offsetPath = 'path("' + ln.d + '")';
+        dot.wait = ln.out ? CYCLE / 2 + 200 + 220 * nOut++ : 140 * nIn++;
+        map.appendChild(dot);
+        dots.push(dot);
+      });
+      if (running) run(0);
+    }
+    function run(lead) {
+      running = true;
+      dots.forEach(function (dot) {
+        dot.animate([
+          { offsetDistance: "0%", opacity: 1 },
+          { offsetDistance: "100%", opacity: 1, offset: 0.5 },
+          { offsetDistance: "100%", opacity: 0, offset: 0.51 },
+          { offsetDistance: "100%", opacity: 0 }
+        ], { duration: CYCLE, iterations: Infinity, delay: lead + dot.wait });
+      });
+    }
+    draw();
+    var started = function () {
+      if (running || !map.classList.contains("in-view")) return;
+      run(first ? 1700 : 0);
+      setTimeout(function () { map.classList.add("settled"); }, 2200);
+      first = false;
+    };
+    if ("MutationObserver" in window) new MutationObserver(started).observe(map, { attributes: true, attributeFilter: ["class"] });
+    if ("ResizeObserver" in window) {
+      var w = map.offsetWidth, ht = map.offsetHeight, raf;
+      new ResizeObserver(function () {
+        if (map.offsetWidth === w && map.offsetHeight === ht) return;
+        w = map.offsetWidth; ht = map.offsetHeight;
+        cancelAnimationFrame(raf); raf = requestAnimationFrame(draw);
+      }).observe(map);
+    }
+    var again = function () { draw(); };
+    if (still.addEventListener) still.addEventListener("change", again); else still.addListener(again);
+  }
+  var cmap = document.querySelector("figure.map");
+  if (cmap) wireMap(cmap);
+
+  // Contact lanes: one curved line from the source box to each link, with a small square travelling along it.
+  function wirePipe(pipe) {
+    var NS = "http://www.w3.org/2000/svg", LOOP = 2400;
+    var src = pipe.querySelector(".src"), ends = pipe.querySelectorAll("a");
+    if (!src || !ends.length || !pipe.animate) return;
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("class", "wires"); svg.setAttribute("aria-hidden", "true");
+    pipe.insertBefore(svg, pipe.firstChild);
+    var still = window.matchMedia("(prefers-reduced-motion:reduce)");
+    var dots = [], running = false;
+    var box = function (el) {
+      var x = 0, y = 0, n = el;
+      while (n && n !== pipe) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+      return { l: x, r: x + el.offsetWidth, cy: y + el.offsetHeight / 2 };
+    };
+    function run() {
+      dots.forEach(function (dot, i) {
+        dot.animate([{ offsetDistance: "0%", opacity: 1 }, { offsetDistance: "100%", opacity: 1 }],
+          { duration: LOOP, iterations: Infinity, delay: -i * LOOP / dots.length });
+      });
+    }
+    function draw() {
+      var s = box(src);
+      dots.forEach(function (d) { d.remove(); });
+      dots = [];
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      ends.forEach(function (a) {
+        var e = box(a), mid = (s.r + e.l) / 2, k = Math.min(60, (e.l - s.r) * 0.3);
+        var d = "M" + s.r + " " + s.cy + "H" + (mid - k) + "C" + mid + " " + s.cy + " " + mid + " " + e.cy + " " + (mid + k) + " " + e.cy + "H" + e.l;
+        var p = document.createElementNS(NS, "path");
+        p.setAttribute("d", d); p.setAttribute("pathLength", "1");
+        svg.appendChild(p);
+        if (still.matches) return;
+        var dot = document.createElement("i");
+        dot.className = "wire-dot";
+        dot.style.offsetPath = 'path("' + d + '")';
+        pipe.appendChild(dot);
+        dots.push(dot);
+      });
+      if (running) run();
+    }
+    draw();
+    var seen = false;
+    var started = function () {
+      if (seen || !pipe.classList.contains("in-view")) return;
+      seen = true;
+      setTimeout(function () { pipe.classList.add("settled"); running = true; run(); }, 1100);
+    };
+    if ("MutationObserver" in window) new MutationObserver(started).observe(pipe, { attributes: true, attributeFilter: ["class"] });
+    if ("ResizeObserver" in window) {
+      var w = pipe.offsetWidth, ht = pipe.offsetHeight, raf;
+      new ResizeObserver(function () {
+        if (pipe.offsetWidth === w && pipe.offsetHeight === ht) return;
+        w = pipe.offsetWidth; ht = pipe.offsetHeight;
+        cancelAnimationFrame(raf); raf = requestAnimationFrame(draw);
+      }).observe(pipe);
+    }
+    var again = function () { draw(); };
+    if (still.addEventListener) still.addEventListener("change", again); else still.addListener(again);
+  }
+  var cpipe = document.querySelector("nav.pipe");
+  if (cpipe) wirePipe(cpipe);
+
+  // with a small square travelling along every line.
+  function wireGraph(fig) {
+    var NS = "http://www.w3.org/2000/svg", LOOP = 4200;
+    var rows = Array.prototype.slice.call(fig.querySelectorAll("ol > li"));
+    if (rows.length < 2 || !fig.animate) return;
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("class", "wires"); svg.setAttribute("aria-hidden", "true");
+    fig.insertBefore(svg, fig.firstChild);
+    var still = window.matchMedia("(prefers-reduced-motion:reduce)");
+    var dots = [], running = false;
+    var centre = function (el) {
+      var x = 0, y = 0, n = el;
+      while (n && n !== fig) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+      return { x: x + el.offsetWidth / 2, y: y + el.offsetHeight / 2 };
+    };
+    function run() {
+      dots.forEach(function (dot) { dot.animate(dot.frames, { duration: LOOP, iterations: Infinity, delay: dot.wait }); });
+    }
+    function draw() {
+      var pts = rows.map(function (li) { var c = centre(li.querySelector(".node")); c.main = li.classList.contains("main"); c.merge = li.classList.contains("merge"); return c; });
+      var mains = pts.filter(function (p) { return p.main; });
+      var top = mains[0], end = mains[mains.length - 1], span = end.y - top.y || 1, lines = [];
+      lines.push({ d: "M" + top.x + " " + top.y + "V" + end.y, cls: "", wait: 0, frames: [{ offsetDistance: "0%", opacity: 1 }, { offsetDistance: "100%", opacity: 1 }] });
+      pts.forEach(function (p, i) {
+        if (p.main) return;
+        var a, b, j;
+        if (p.merge) { for (j = i + 1; j < pts.length && !pts[j].main; j++); a = p; b = pts[j]; }
+        else { for (j = i - 1; j >= 0 && !pts[j].main; j--); a = pts[j]; b = p; }
+        if (!a || !b) return;
+        var k = (b.y - a.y) / 2, part = Math.min(0.4, (b.y - a.y) / span);
+        var at = p.merge ? (b.y - top.y) / span - part : (a.y - top.y) / span;
+        lines.push({
+          d: "M" + a.x + " " + a.y + "C" + a.x + " " + (a.y + k) + " " + b.x + " " + (b.y - k) + " " + b.x + " " + b.y,
+          cls: p.merge ? "merge" : "drop", wait: LOOP * at,
+          frames: [{ offsetDistance: "0%", opacity: 1 }, { offsetDistance: "100%", opacity: 1, offset: part }, { offsetDistance: "100%", opacity: 0, offset: Math.min(0.99, part + (p.merge ? 0.01 : 0.12)) }, { offsetDistance: "100%", opacity: 0 }]
+        });
+      });
+      dots.forEach(function (d) { d.remove(); });
+      dots = [];
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      lines.forEach(function (ln) {
+        var p = document.createElementNS(NS, "path");
+        p.setAttribute("d", ln.d);
+        if (ln.cls) p.setAttribute("class", ln.cls);
+        svg.appendChild(p);
+        if (still.matches) return;
+        var dot = document.createElement("i");
+        dot.className = "wire-dot";
+        dot.style.offsetPath = 'path("' + ln.d + '")';
+        dot.frames = ln.frames; dot.wait = ln.wait;
+        fig.appendChild(dot);
+        dots.push(dot);
+      });
+      if (running) run();
+    }
+    draw();
+    var started = function () {
+      if (running || !fig.classList.contains("in-view")) return;
+      running = true; run();
+    };
+    if ("MutationObserver" in window) new MutationObserver(started).observe(fig, { attributes: true, attributeFilter: ["class"] });
+    if ("ResizeObserver" in window) {
+      var w = fig.offsetWidth, ht = fig.offsetHeight, raf;
+      new ResizeObserver(function () {
+        if (fig.offsetWidth === w && fig.offsetHeight === ht) return;
+        w = fig.offsetWidth; ht = fig.offsetHeight;
+        cancelAnimationFrame(raf); raf = requestAnimationFrame(draw);
+      }).observe(fig);
+    }
+    var again = function () { draw(); };
+    if (still.addEventListener) still.addEventListener("change", again); else still.addListener(again);
+  }
+  var cgraph = document.querySelector("figure.gitgraph");
+  if (cgraph) wireGraph(cgraph);
+
+  var items = document.querySelectorAll("figure.chart, figure.gitgraph, figure.shots, ul.verdicts, ul.stats, ol.flow, figure.map, nav.pipe, div.spanbar, h1, h2");
   if (!("IntersectionObserver" in window)) {
     items.forEach(function (el) { el.classList.add("in-view"); });
     return;
